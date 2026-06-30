@@ -526,6 +526,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 }
+.resource-card--full { grid-column: 1 / -1; }
 .resource-card {
     background: var(--bg-white);
     border: 1px solid var(--border);
