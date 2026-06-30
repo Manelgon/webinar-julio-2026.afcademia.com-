@@ -117,6 +117,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     transition: background var(--transition) !important;
 }
 .btn-nav:hover { background: var(--accent-hover) !important; }
+.btn-nav-accent { background: var(--primary) !important; border: 2px solid rgba(255,255,255,.3) !important; }
+.btn-nav-accent:hover { background: #0f2640 !important; }
 
 /* Hamburger */
 .hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
