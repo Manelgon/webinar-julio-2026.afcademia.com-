@@ -46,6 +46,13 @@ staticFiles.forEach(file => {
     }
 });
 
+// Copiar archivos de lead-magnet
+const leadMagnetFiles = ['guia-rapida.html'];
+leadMagnetFiles.forEach(file => {
+    const src = path.join(__dirname, 'lead-magnet', file);
+    if (fs.existsSync(src)) fs.copyFileSync(src, path.join(distDir, file));
+});
+
 // Copiar blueprint con nombre limpio para URL
 const blueprintSrc = path.join(__dirname, 'Webinar junlio 2026.blueprint.json');
 if (fs.existsSync(blueprintSrc)) {
