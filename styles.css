@@ -556,15 +556,19 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     letter-spacing: 0.04em;
 }
 .resource-icon {
-    font-size: 2rem;
-    margin-bottom: 16px;
+    font-size: 1.6rem;
     line-height: 1;
+    flex-shrink: 0;
 }
 .resource-card h3 {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--dark);
-    margin-bottom: 8px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
 }
 .resource-card > p {
     font-size: 0.92rem;
