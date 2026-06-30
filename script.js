@@ -104,21 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const now = new Date().toISOString();
 
-            // 1. Escribir en Supabase → tabla leads
+            // 1. Registrar lead vía RPC (maneja leads nuevos y existentes + flujos_embudo)
             try {
-                const { error } = await supabaseClient.from('leads').insert({
-                    nombre,
-                    email,
-                    source: SOURCE,
-                    privacy_accepted: true,
-                    privacy_accepted_at: now,
+                const { error } = await supabaseClient.rpc('registrar_lead_webinar', {
+                    p_nombre:       nombre,
+                    p_email:        email,
+                    p_source:       SOURCE,
+                    p_nombre_flujo: 'webinar-julio-2026',
+                    p_tags:         ['webinar-2026', 'julio-2026', 'ia-administrador-fincas'],
                 });
-
-                // 23505 = email duplicado → el lead ya existe, lo tratamos como éxito
-                if (error && error.code === '23505') {
-                    window.location.href = 'gracias.html';
-                    return;
-                }
 
                 if (error) {
                     console.error('Supabase error:', error.message);
