@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Los 10 Prompts de Claude · AFCademIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--azul:#16365C;--naranja:#F08019;--cream:#F5F8FC;--gris:#4A5A70;}
+*{box-sizing:border-box;margin:0;padding:0;}
+@media print{
+  body{background:white;padding:0;}
+  .no-print{display:none;}
+  .page-break{page-break-before:always;}
+  @page{margin:14mm 12mm;}
+}
+body{font-family:'Inter',sans-serif;background:#F5F8FC;color:#16365C;padding:32px 16px;}
+.page{max-width:800px;margin:0 auto;}
+
+/* HEADER */
+.header{display:flex;align-items:center;justify-content:space-between;background:#16365C;border-radius:16px 16px 0 0;padding:20px 32px;border-bottom:3px solid var(--naranja);}
+.header img{height:28px;}
+.header-right{text-align:right;}
+.header-right .title{font-size:.85rem;font-weight:700;color:white;}
+.header-right .sub{font-size:.7rem;color:rgba(255,255,255,.6);}
+
+/* HERO CARD */
+.hero-card{background:linear-gradient(135deg,#16365C 0%,#1e4d82 100%);padding:36px 32px;text-align:center;}
+.hero-card .badge{display:inline-block;background:rgba(240,128,25,.2);border:1px solid rgba(240,128,25,.4);color:#F08019;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:14px;}
+.hero-card h1{font-size:1.6rem;font-weight:900;line-height:1.2;margin-bottom:8px;color:white;}
+.hero-card p{font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.6;}
+
+/* INTRO */
+.intro{background:white;padding:24px 32px;border-bottom:1px solid #e2e8f0;}
+.intro p{font-size:.88rem;color:#4A5A70;line-height:1.7;}
+.intro strong{color:#16365C;}
+
+/* PROMPTS */
+.prompts{background:white;padding:16px 32px 32px;}
+.prompt{border:1px solid #e2e8f0;border-radius:12px;margin-bottom:16px;overflow:hidden;}
+.prompt-header{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#F5F8FC;border-bottom:1px solid #e2e8f0;}
+.prompt-num{background:var(--naranja);color:white;font-size:.72rem;font-weight:800;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.prompt-title{font-size:.9rem;font-weight:700;color:#16365C;}
+.prompt-tag{margin-left:auto;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#4A5A70;background:#e2e8f0;padding:3px 8px;border-radius:4px;}
+.prompt-body{padding:16px 18px;}
+.prompt-body .use{font-size:.75rem;color:#4A5A70;margin-bottom:10px;line-height:1.5;}
+.prompt-box{background:#F5F8FC;border-radius:8px;padding:14px 16px;border-left:3px solid var(--naranja);}
+.prompt-box pre{font-size:.78rem;color:#16365C;line-height:1.8;white-space:pre-wrap;word-break:break-word;font-family:'Consolas','Courier New',monospace;}
+.prompt-box pre .var{color:#F08019;font-weight:700;}
+.tip{display:flex;align-items:flex-start;gap:8px;margin-top:10px;font-size:.74rem;color:#4A5A70;line-height:1.5;}
+.tip::before{content:"💡";flex-shrink:0;}
+
+/* FOOTER */
+.footer{background:#16365C;border-radius:0 0 16px 16px;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
+.footer p{font-size:.7rem;color:rgba(255,255,255,.4);}
+
+/* PRINT BTN */
+.print-btn{position:fixed;bottom:24px;right:24px;background:var(--naranja);color:white;border:none;border-radius:999px;padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(240,128,25,.4);transition:background .2s;}
+.print-btn:hover{background:#e07010;}
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">🖨️ Guardar PDF</button>
+<div class="page">
+
+  <div class="header">
+    <img src="https://afcademia.com/wp-content/uploads/elementor/thumbs/Logo-oficial-web1-roi228ovmhvrlj6jft9zhc1gx83mr0szwn28g88atg.png" alt="AFCademIA"/>
+    <div class="header-right">
+      <div class="title">Los 10 Prompts de Claude</div>
+      <div class="sub">Administradores de Fincas · AFCademIA 2026</div>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="badge">Recurso exclusivo · Webinar 1 Jul 2026</div>
+    <h1>Los 10 Prompts de Claude<br/>para Administradores de Fincas</h1>
+    <p>Copia, pega y adapta. Listos para usar desde hoy mismo.</p>
+  </div>
+
+  <div class="intro">
+    <p>Estos prompts están diseñados específicamente para el día a día de la administración de fincas en España. <strong>Copia el texto del recuadro naranja, pégalo en Claude</strong> (claude.ai) y sustituye los datos entre corchetes <span style="color:#fbbf24;">[así]</span> por los de tu caso real.</p>
+  </div>
+
+  <div class="prompts">
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">1</div>
+        <div class="prompt-title">Circular de convocatoria de junta</div>
+        <div class="prompt-tag">Juntas</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Usa este prompt cuando necesites redactar una convocatoria de junta ordinaria o extraordinaria.</div>
+        <div class="prompt-box"><pre>Redacta una circular formal de convocatoria de junta <span class="var">[ordinaria / extraordinaria]</span> para la comunidad de propietarios <span class="var">[NOMBRE COMUNIDAD]</span>.
+
+Fecha: <span class="var">[FECHA]</span>
+Hora: <span class="var">[HORA]</span>
+Lugar: <span class="var">[LUGAR]</span>
+
+Orden del día:
+1. <span class="var">[PUNTO 1]</span>
+2. <span class="var">[PUNTO 2]</span>
+3. <span class="var">[PUNTO 3]</span>
+4. Ruegos y preguntas
+
+Tono profesional, formal pero cercano. Incluye segunda convocatoria 30 minutos después en el mismo lugar. Firma como administrador de fincas.</pre></div>
+        <div class="tip">Añade "En un máximo de 150 palabras" si quieres una versión corta para WhatsApp o email.</div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">2</div>
+        <div class="prompt-title">Acta de junta desde notas</div>
+        <div class="prompt-tag">Juntas</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Pega tus apuntes caóticos y Claude los transforma en un acta formal lista para aprobar.</div>
+        <div class="prompt-box"><pre>Eres un administrador de fincas colegiado en España. A partir de las siguientes notas de una junta de propietarios, redacta un acta formal completa.
+
+Comunidad: <span class="var">[NOMBRE]</span>
+Fecha: <span class="var">[FECHA]</span>
+Asistentes: <span class="var">[Nº PROPIETARIOS] propietarios presentes + [Nº] representados</span>
+Presidente: <span class="var">[NOMBRE]</span>
+Secretario: <span class="var">[NOMBRE]</span>
+
+NOTAS DE LA REUNIÓN:
+<span class="var">[PEGA AQUÍ TUS APUNTES TAL CUAL]</span>
+
+El acta debe incluir: apertura, quórum, tratamiento de cada punto del orden del día con acuerdos adoptados y votaciones, y cierre. Lenguaje formal según la Ley de Propiedad Horizontal.</pre></div>
+        <div class="tip">Cuanto más detalle pongas en las notas, mejor será el acta resultante.</div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">3</div>
+        <div class="prompt-title">Respuesta a reclamación de vecino</div>
+        <div class="prompt-tag">Comunicación</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Para contestar quejas o reclamaciones manteniendo el tono profesional sin que parezca una respuesta automática.</div>
+        <div class="prompt-box"><pre>Redacta una respuesta profesional y empática a la siguiente reclamación de un propietario.
+
+Reclamación recibida:
+<span class="var">[PEGA AQUÍ EL TEXTO DE LA RECLAMACIÓN]</span>
+
+Estado actual de la gestión:
+<span class="var">[EXPLICA QUÉ SE HA HECHO O SE ESTÁ HACIENDO]</span>
+
+La respuesta debe: reconocer la queja, explicar la situación sin excusas, indicar los próximos pasos con plazo aproximado, y cerrar con tono conciliador. Máximo 120 palabras.</pre></div>
+        <div class="tip">Funciona muy bien con quejas de ruidos, derramas, obras y mantenimiento.</div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">4</div>
+        <div class="prompt-title">Aviso de obra o mantenimiento</div>
+        <div class="prompt-tag">Comunicación</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Comunicados claros para obras, revisiones, cortes de agua, ascensor parado, etc.</div>
+        <div class="prompt-box"><pre>Redacta un aviso formal para los propietarios de la comunidad <span class="var">[NOMBRE]</span> informando de lo siguiente:
+
+Tipo de actuación: <span class="var">[obra / revisión / corte de suministro / avería]</span>
+Descripción: <span class="var">[QUÉ SE VA A HACER]</span>
+Fechas y horario afectado: <span class="var">[CUÁNDO]</span>
+Servicios afectados: <span class="var">[agua / luz / ascensor / acceso / etc.]</span>
+Empresa que realiza el trabajo: <span class="var">[NOMBRE EMPRESA]</span>
+
+Tono informativo, claro y sin tecnicismos. Incluye disculpa por las molestias y datos de contacto para dudas.</pre></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">5</div>
+        <div class="prompt-title">Burofax o requerimiento formal</div>
+        <div class="prompt-tag">Legal</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Para requerimientos de pago, cese de actividades molestas o cumplimiento de acuerdos de junta.</div>
+        <div class="prompt-box"><pre>Redacta un requerimiento formal (para enviar por burofax) al propietario <span class="var">[NOMBRE]</span>, piso <span class="var">[NÚMERO]</span>, de la comunidad <span class="var">[NOMBRE]</span>.
+
+Motivo del requerimiento: <span class="var">[IMPAGO DE CUOTAS / ACTIVIDADES MOLESTAS / INCUMPLIMIENTO DE ACUERDO]</span>
+Detalle: <span class="var">[EXPLICACIÓN DEL PROBLEMA]</span>
+Importe reclamado (si aplica): <span class="var">[CANTIDAD €]</span>
+Plazo para subsanar: <span class="var">[Nº DÍAS] días desde recepción</span>
+
+Lenguaje jurídico correcto conforme a la LPH. Menciona que en caso de no atenderse se procederá por vía judicial. Formal y sin ambigüedades.</pre></div>
+        <div class="tip">Revisa siempre con un abogado antes de enviar documentos con efectos legales.</div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">6</div>
+        <div class="prompt-title">Resumen de presupuesto para propietarios</div>
+        <div class="prompt-tag">Económico</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Transforma presupuestos técnicos en un resumen comprensible para propietarios no técnicos.</div>
+        <div class="prompt-box"><pre>Tengo el siguiente presupuesto de una empresa para la comunidad de propietarios. Redacta un resumen ejecutivo claro para enviar a los propietarios:
+
+<span class="var">[PEGA AQUÍ EL PRESUPUESTO O SUS PUNTOS PRINCIPALES]</span>
+
+El resumen debe explicar: qué trabajo se va a hacer y por qué es necesario, cuánto cuesta en total, cuánto le toca pagar a cada propietario (coeficiente medio: <span class="var">[%]</span>%), y cuándo se realizará. Sin tecnicismos. Máximo 150 palabras.</pre></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">7</div>
+        <div class="prompt-title">Informe de incidencia</div>
+        <div class="prompt-tag">Gestión</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Documenta averías y gestiones de forma estructurada y trazable.</div>
+        <div class="prompt-box"><pre>Redacta un informe de incidencia para el expediente de la comunidad <span class="var">[NOMBRE]</span>.
+
+Fecha de notificación: <span class="var">[FECHA]</span>
+Tipo de incidencia: <span class="var">[AVERÍA / DAÑOS / ACCIDENTE / CONFLICTO]</span>
+Descripción del problema: <span class="var">[QUÉ OCURRIÓ]</span>
+Propietario o vecino afectado: <span class="var">[NOMBRE / PISO]</span>
+Gestiones realizadas hasta ahora: <span class="var">[QUÉ SE HA HECHO]</span>
+Estado actual: <span class="var">[PENDIENTE / EN CURSO / RESUELTO]</span>
+
+Formato: informe formal con secciones claramente diferenciadas. Incluye apartado de "Próximas acciones previstas".</pre></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">8</div>
+        <div class="prompt-title">Circular de normas de convivencia</div>
+        <div class="prompt-tag">Comunicación</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Recuerda normas de convivencia de forma que no genere conflicto con los vecinos.</div>
+        <div class="prompt-box"><pre>Redacta una circular para recordar las normas de convivencia de la comunidad <span class="var">[NOMBRE]</span>.
+
+Normas a recordar:
+- <span class="var">[NORMA 1: ej. horario de silencio]</span>
+- <span class="var">[NORMA 2: ej. uso de zonas comunes]</span>
+- <span class="var">[NORMA 3: ej. depósito de basuras]</span>
+
+Tono: amable, positivo y comunitario. Que no suene a regañina. Recuerda que el objetivo es el bienestar de todos los vecinos. Sin señalar a nadie en concreto. Máximo 100 palabras.</pre></div>
+        <div class="tip">Añade "en tono de verano / navidades / vuelta al cole" según la época del año para hacerlo más natural.</div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">9</div>
+        <div class="prompt-title">Email de seguimiento a proveedor</div>
+        <div class="prompt-tag">Proveedores</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Cuando un proveedor no da señales de vida sobre una reparación o presupuesto pendiente.</div>
+        <div class="prompt-box"><pre>Redacta un email de seguimiento al proveedor <span class="var">[NOMBRE EMPRESA]</span> sobre el trabajo pendiente en la comunidad <span class="var">[NOMBRE]</span>.
+
+Trabajo o presupuesto pendiente: <span class="var">[DESCRIPCIÓN]</span>
+Fecha en que se solicitó: <span class="var">[FECHA]</span>
+Veces que se ha contactado antes: <span class="var">[Nº]</span>
+Urgencia: <span class="var">[baja / media / alta — hay vecinos afectados]</span>
+
+Tono: firme pero profesional. Solicita respuesta o actualización de estado antes de <span class="var">[FECHA LÍMITE]</span>. Si no recibimos respuesta, nos veremos obligados a contactar con otro proveedor.</pre></div>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-header">
+        <div class="prompt-num">10</div>
+        <div class="prompt-title">Certificado para propietario</div>
+        <div class="prompt-tag">Certificados</div>
+      </div>
+      <div class="prompt-body">
+        <div class="use">Genera certificados de deudas, situación al corriente de pagos o acuerdos de junta.</div>
+        <div class="prompt-box"><pre>Redacta un certificado oficial emitido por el administrador de fincas de la comunidad <span class="var">[NOMBRE]</span>.
+
+Tipo de certificado: <span class="var">[al corriente de pagos / existencia de deuda / acuerdo de junta]</span>
+Propietario: <span class="var">[NOMBRE COMPLETO]</span>
+Piso / local: <span class="var">[NÚMERO]</span>
+Contenido a certificar: <span class="var">[DETALLE]</span>
+Fecha de emisión: <span class="var">[FECHA]</span>
+
+Formato oficial con encabezado, cuerpo del certificado, lugar y fecha, y espacio para firma y sello del administrador. Lenguaje formal y preciso.</pre></div>
+        <div class="tip">Recuerda que los certificados con efectos legales deben llevar tu firma colegiada.</div>
+      </div>
+    </div>
+
+  </div><!-- /prompts -->
+
+  <div class="footer">
+    <p>AFCademIA · cursos@afcademia.com · 661 239 319</p>
+    <p>© 2026 AFCademIA · Uso personal · No redistribuir</p>
+  </div>
+
+</div>
+</body>
+</html>
