@@ -2,7 +2,8 @@
   "name": "landing-afc-webinar-julio-2026",
   "version": "1.0.0",
   "scripts": {
-    "dev": "npx serve . -p 3000 --no-clipboard",
-    "start": "npx serve . -p 3000"
+    "build": "node build.js",
+    "dev": "node build.js && npx serve dist -p 3000 --no-clipboard",
+    "start": "node build.js && npx serve dist -p 3000"
   }
 }
