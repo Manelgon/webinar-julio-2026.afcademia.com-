@@ -2,9 +2,8 @@
 // AFCademIA — Landing Webinar IA Scripts
 // =========================================
 
-const N8N_WEBHOOK    = '{{N8N_WEBHOOK}}';
-const SUPABASE_URL   = '{{SUPABASE_URL}}';
-const SUPABASE_KEY   = '{{SUPABASE_ANON_KEY}}';
+const SUPABASE_URL    = '{{SUPABASE_URL}}';
+const SUPABASE_KEY    = '{{SUPABASE_ANON_KEY}}';
 const GOOGLE_FORM_URL = 'https://forms.gle/Vhd3QbMJYtWTCBhA6';
 
 const SOURCE = 'webinar-julio-2026-administrador-fincas';
@@ -121,16 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Supabase error:', err);
             }
 
-            // 2. Notificar a n8n (fire & forget)
-            if (N8N_WEBHOOK && !N8N_WEBHOOK.includes('REEMPLAZA')) {
-                fetch(N8N_WEBHOOK, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nombre, email, fuente: SOURCE }),
-                }).catch(() => {});
-            }
-
-            // 3. Abrir Google Form en nueva pestaña + redirigir a gracias
+            // 2. Abrir Google Form en nueva pestaña + redirigir a gracias
             window.open(GOOGLE_FORM_URL, '_blank', 'noopener');
             window.location.href = 'gracias.html';
         });
