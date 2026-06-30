@@ -3,6 +3,7 @@
 // =========================================
 
 const N8N_WEBHOOK = '{{URL_N8N_WEBHOOK}}';
+const GOOGLE_FORM_URL = 'https://forms.gle/Vhd3QbMJYtWTCBhA6';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -115,6 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Si falla la red igualmente redirigimos
             }
 
+            // Abrir Google Form en nueva pestaña para registro adicional
+            window.open(GOOGLE_FORM_URL, '_blank', 'noopener');
             window.location.href = 'gracias.html';
         });
     });
