@@ -7,7 +7,7 @@ const SUPABASE_KEY = '{{SUPABASE_ANON_KEY}}';
 
 const SOURCE = 'webinar-julio-2026-administrador-fincas';
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 1. Escribir en Supabase → tabla leads
             try {
-                const { error } = await supabase.from('leads').upsert({
+                const { error } = await supabaseClient.from('leads').upsert({
                     nombre,
                     email,
                     source: SOURCE,
