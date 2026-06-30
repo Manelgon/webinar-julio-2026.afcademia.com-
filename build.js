@@ -15,15 +15,20 @@ if (fs.existsSync(envPath)) {
 }
 
 // Variables de entorno del sistema tienen prioridad (para Vercel/CI)
-const webhook = process.env.N8N_WEBHOOK || env.N8N_WEBHOOK || '';
+const webhook      = process.env.N8N_WEBHOOK                  || env.N8N_WEBHOOK                  || '';
+const supabaseUrl  = process.env.NEXT_PUBLIC_SUPABASE_URL      || env.NEXT_PUBLIC_SUPABASE_URL      || '';
+const supabaseKey  = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
-if (!webhook) {
-    console.warn('⚠️  N8N_WEBHOOK no definido. El formulario no enviará datos.');
-}
+if (!webhook)     console.warn('⚠️  N8N_WEBHOOK no definido.');
+if (!supabaseUrl) console.warn('⚠️  NEXT_PUBLIC_SUPABASE_URL no definido.');
+if (!supabaseKey) console.warn('⚠️  NEXT_PUBLIC_SUPABASE_ANON_KEY no definido.');
 
 // Copiar y reemplazar en script.js
 const src = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
-const out = src.replace("'{{URL_N8N_WEBHOOK}}'", JSON.stringify(webhook));
+const out = src
+    .replace("'{{N8N_WEBHOOK}}'",    JSON.stringify(webhook))
+    .replace("'{{SUPABASE_URL}}'",   JSON.stringify(supabaseUrl))
+    .replace("'{{SUPABASE_ANON_KEY}}'", JSON.stringify(supabaseKey));
 
 const distDir = path.join(__dirname, 'dist');
 if (!fs.existsSync(distDir)) fs.mkdirSync(distDir);
