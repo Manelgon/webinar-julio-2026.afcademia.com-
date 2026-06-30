@@ -35,9 +35,9 @@ fs.writeFileSync(path.join(distDir, 'script.js'), out);
 const staticFiles = [
     'index.html', 'styles.css', 'gracias.html',
     'prompts-claude.html', 'cheatsheet.html',
-    'guia-inicio.html', 'email-descarga.html',
-    'Webinar junlio 2026.blueprint.json'
+    'guia-inicio.html', 'email-descarga.html'
 ];
+
 
 staticFiles.forEach(file => {
     const src = path.join(__dirname, file);
@@ -45,6 +45,12 @@ staticFiles.forEach(file => {
         fs.copyFileSync(src, path.join(distDir, file));
     }
 });
+
+// Copiar blueprint con nombre limpio para URL
+const blueprintSrc = path.join(__dirname, 'Webinar junlio 2026.blueprint.json');
+if (fs.existsSync(blueprintSrc)) {
+    fs.copyFileSync(blueprintSrc, path.join(distDir, 'make-blueprint.json'));
+}
 
 // Copiar imágenes si existen
 ['logo-afcademia.png', 'icono-afcademia.webp', 'banner.jpeg', 'afcademia_header_email.png'].forEach(file => {
