@@ -106,13 +106,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 1. Escribir en Supabase → tabla leads
             try {
-                const { error } = await supabaseClient.from('leads').upsert({
+                const { error } = await supabaseClient.from('leads').insert({
                     nombre,
                     email,
                     source: SOURCE,
                     privacy_accepted: true,
                     privacy_accepted_at: now,
-                }, { onConflict: 'email' });
+                });
+
+                // 23505 = email duplicado → el lead ya existe, lo tratamos como éxito
+                if (error && error.code === '23505') {
+                    window.location.href = 'gracias.html';
+                    return;
+                }
 
                 if (error) {
                     console.error('Supabase error:', error.message);
