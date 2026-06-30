@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Demo 1 TextExpander · Webinar AFCademIA · 1 jul 2026</title>
+<style>
+  :root{--azul:#16365C;--naranja:#F08019;--cream:#F5F8FC;--gris:#4A5A70;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  @media print{body{background:white;padding:0;}.no-print{display:none;}@page{margin:16mm 14mm;}}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#e8edf3;padding:32px 16px;color:var(--azul);font-size:12px;}
+  .page{width:794px;background:white;margin:0 auto 32px;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.12);overflow:hidden;}
+  .page-header{background:var(--azul);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;}
+  .page-header .logo{height:30px;width:auto;}
+  .page-header .seccion{color:rgba(255,255,255,.6);font-size:.72rem;}
+  .body{padding:22px 28px 30px;}
+  h1{font-size:1.4rem;font-weight:800;color:var(--azul);margin-bottom:4px;}
+  .meta{font-size:.75rem;color:var(--gris);margin-bottom:14px;line-height:1.6;}
+  .accent{width:40px;height:3px;background:var(--naranja);border-radius:2px;margin-bottom:16px;}
+  h2{font-size:.88rem;font-weight:800;color:white;background:var(--azul);padding:6px 12px;border-radius:5px;margin:16px 0 8px;}
+  h3{font-size:.8rem;font-weight:700;color:var(--naranja);margin:12px 0 5px;text-transform:uppercase;letter-spacing:.06em;}
+  .paso{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+  .paso .num{background:var(--naranja);color:white;font-weight:800;font-size:.75rem;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .paso .content p{font-size:.78rem;line-height:1.5;color:var(--gris);}
+  .paso .content strong{display:block;font-size:.8rem;color:var(--azul);margin-bottom:2px;}
+  .cita{background:var(--cream);border-left:4px solid var(--naranja);border-radius:0 6px 6px 0;padding:8px 12px;margin:6px 0;font-size:.78rem;line-height:1.6;font-style:italic;}
+  .snippet{background:#f8f9fa;border:1px solid #dde3eb;border-radius:8px;padding:12px 14px;margin:8px 0;}
+  .snippet .header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .snippet .atajo{background:var(--azul);color:white;font-family:monospace;font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:4px;}
+  .snippet .titulo{font-size:.8rem;font-weight:700;color:var(--azul);}
+  .snippet pre{font-family:'Segoe UI',Arial,sans-serif;font-size:.73rem;color:var(--gris);line-height:1.6;white-space:pre-wrap;word-break:break-word;}
+  input[type=checkbox]{width:12px;height:12px;accent-color:var(--naranja);margin-right:4px;}
+  .check-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin:6px 0;}
+  .check-list li{display:flex;align-items:flex-start;gap:4px;font-size:.76rem;line-height:1.4;}
+  .check-list.single{grid-template-columns:1fr;}
+  .contingencia{background:#fff5f0;border:1.5px solid var(--naranja);border-radius:6px;padding:8px 12px;margin:10px 0;}
+  .contingencia strong{color:var(--naranja);}
+  .tip{background:rgba(240,128,25,.08);border:1px solid var(--naranja);border-radius:6px;padding:7px 11px;margin:8px 0;font-size:.74rem;line-height:1.5;}
+  .page-footer{padding:8px 28px;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:.68rem;color:var(--gris);}
+  .print-btn{position:fixed;bottom:24px;right:24px;background:var(--naranja);color:white;border:none;border-radius:999px;padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(240,128,25,.4);}
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">🖨️ Guardar PDF</button>
+<div class="page">
+  <div class="page-header">
+    <img src="../../logo-afcademia.png" alt="AFCademIA" class="logo"/>
+    <span class="seccion">Demo 1 · TextExpander · Bloque 07:30 – 13:00 · Uso interno ponente</span>
+  </div>
+  <div class="body">
+    <h1>⌨️ Demo 1 — TextExpander</h1>
+    <p class="meta">Datos ficticios: Comunidad "Residencial Las Acacias", vecino "Javier García Ruiz". Nada de datos reales (RGPD).</p>
+    <div class="accent"></div>
+
+    <h2>✅ Preparación previa (T-60 min)</h2>
+    <ul class="check-list">
+      <li><input type="checkbox"/>TextExpander instalado y activo en segundo plano</li>
+      <li><input type="checkbox"/>Snippets :rasc, :rcuota, :rjunta, :rcorte creados y probados</li>
+      <li><input type="checkbox"/>Gmail de demo abierto en pestaña con email nuevo en blanco</li>
+      <li><input type="checkbox"/>TextExpander web abierta en otra pestaña</li>
+    </ul>
+
+    <h2>🎬 Guion paso a paso</h2>
+    <div class="paso"><div class="num">1</div><div class="content"><strong>Mostrar la interfaz (30 s)</strong><p>Compartir pantalla → TextExpander → mostrar grupos y snippets.</p><div class="cita">"A la izquierda, los grupos. A la derecha, el contenido de cada snippet. Cada uno tiene un atajo — esas 2-4 letras — y cuando las escribís en cualquier sitio, el texto completo aparece al instante."</div></div></div>
+    <div class="paso"><div class="num">2</div><div class="content"><strong>Demo snippet 1: avería ascensor (90 s)</strong><p>Ir a Gmail → Redactar → escribir lentamente <code style="background:#eef2f7;padding:1px 5px;border-radius:3px;font-family:monospace">:rasc</code> en el cuerpo del email.</p><div class="cita">"Imagínate que Javier García Ruiz del 3º B me escribe preguntando cuándo se va a arreglar el ascensor. En lugar de escribir la respuesta completa, yo escribo… <em>:rasc</em>… y TextExpander hace esto:"</div><p style="margin-top:5px;font-size:.75rem;color:var(--gris)">El email completo aparece al instante. Mostrar el resultado en pantalla.</p><div class="cita">"Eso ha tardado menos de 3 segundos. Ahora solo tengo que rellenar la referencia de la incidencia."</div></div></div>
+    <div class="paso"><div class="num">3</div><div class="content"><strong>Demo snippet 2: confirmación de cuota (60 s)</strong><p>Escribir <code style="background:#eef2f7;padding:1px 5px;border-radius:3px;font-family:monospace">:rcuota</code> en nueva línea.</p><div class="cita">"Segundo caso: un propietario pregunta si ha pagado. Escribo <em>:rcuota</em>…"</div></div></div>
+    <div class="paso"><div class="num">4</div><div class="content"><strong>Mostrar más snippets en el panel (30 s)</strong><p>Volver a la interfaz de TextExpander. Mostrar la lista completa de snippets disponibles.</p><div class="cita">"En mi grupo de fincas tengo ya más de 20 snippets: aviso de junta, respuesta a moroso, confirmación de presupuesto, aviso de corte de agua… Una vez creados, el ahorro es acumulativo cada día."</div></div></div>
+    <div class="paso"><div class="num">5</div><div class="content"><strong>Cierre demo (30 s)</strong><div class="cita">"El precio de TextExpander ronda los 3-4 € al mes. Con una sola hora de trabajo ahorrada a la semana, la amortización es instantánea. Os incluyo en el material todos estos snippets listos para importar."</div></div></div>
+
+    <div class="contingencia"><strong>🆘 Contingencia:</strong> "TextExpander no me está respondiendo. Os muestro el resultado directamente:" → mostrar slide con el texto del snippet expandido.</div>
+
+    <h2>📋 Snippets incluidos en el lead magnet</h2>
+    <div class="snippet"><div class="header"><span class="atajo">:rasc</span><span class="titulo">Respuesta avería ascensor</span></div><pre>Estimado/a Sr./Sra. [APELLIDO],
+Le confirmamos que la avería del ascensor está registrada con referencia INC-[FECHA]. Ya hemos contactado con la empresa de mantenimiento y estamos a la espera de fecha de intervención. Le informaremos en cuanto la confirmemos.
+Lamentamos las molestias.
+Atentamente, [TU NOMBRE] · [TELÉFONO] | [EMAIL]</pre></div>
+    <div class="snippet"><div class="header"><span class="atajo">:rcuota</span><span class="titulo">Confirmación de cuota pagada</span></div><pre>Estimado/a Sr./Sra. [APELLIDO],
+Le confirmamos el pago de la cuota de comunidad de [MES/TRIMESTRE] por importe de [IMPORTE] €, recibido el [FECHA]. Si necesita justificante, responda a este email.
+Atentamente, [TU NOMBRE] · [TELÉFONO] | [EMAIL]</pre></div>
+    <div class="snippet"><div class="header"><span class="atajo">:rjunta</span><span class="titulo">Aviso convocatoria de Junta</span></div><pre>Estimado/a propietario/a,
+Le convocamos a la Junta [ORDINARIA/EXTRAORDINARIA] de [NOMBRE COMUNIDAD]:
+📅 [FECHA] · 🕐 [HORA] (1ª) / [HORA+30] (2ª) · 📍 [LUGAR]
+Orden del día: 1. Aprobación acta anterior · 2. [PUNTO] · 3. Ruegos y preguntas.
+Atentamente, [TU NOMBRE]</pre></div>
+    <div class="snippet"><div class="header"><span class="atajo">:rcorte</span><span class="titulo">Aviso corte suministro</span></div><pre>Estimado/a propietario/a,
+Le informamos de un corte de [AGUA/LUZ/GAS] el [FECHA] de [HORA] a [HORA] para trabajos en [ZONA]. Urgencias: 📞 [TELÉFONO]. Lamentamos las molestias.
+[TU NOMBRE] · Administrador/a de Fincas</pre></div>
+
+    <div class="tip">Todos los snippets completos están en el lead magnet (guia-rapida). Son 6 en total: :rasc, :rcuota, :rjunta, :rcorte, :rmoroso1, :rbienvenida.</div>
+  </div>
+  <div class="page-footer">
+    <span style="color:var(--naranja)">AFCademIA</span> · Demo 1 · Uso interno · Webinar 1-jul-2026
+    <span>cursos@afcademia.com · 661 239 319</span>
+  </div>
+</div>
+</body>
+</html>

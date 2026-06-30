@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Tus recursos del webinar · AFCademIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--azul:#16365C;--naranja:#F08019;--cream:#F5F8FC;--gris:#4A5A70;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#F5F8FC;color:#16365C;min-height:100vh;}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:white;border-bottom:1px solid #e2e8f0;}
+.nav-logo{height:32px;}
+.nav-badge{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F08019;background:rgba(240,128,25,.08);border:1px solid rgba(240,128,25,.2);padding:4px 12px;border-radius:999px;}
+
+/* HERO */
+.hero{text-align:center;padding:64px 20px 48px;max-width:640px;margin:0 auto;}
+.hero-icon{font-size:3rem;margin-bottom:16px;}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px;color:#16365C;}
+.hero h1 em{font-style:normal;color:#F08019;}
+.hero p{font-size:.95rem;color:#4A5A70;line-height:1.7;}
+
+/* RECURSOS GRID */
+.recursos{max-width:900px;margin:0 auto;padding:0 20px 64px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+
+.recurso-card{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:border .2s,transform .2s,box-shadow .2s;text-decoration:none;color:#16365C;}
+.recurso-card:hover{border-color:rgba(240,128,25,.4);transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,54,92,.08);}
+
+.rc-top{display:flex;align-items:center;gap:12px;margin-bottom:4px;}
+.rc-icon{font-size:1.6rem;width:44px;height:44px;background:rgba(240,128,25,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.rc-tag{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F08019;}
+.rc-title{font-size:1rem;font-weight:800;line-height:1.3;color:#16365C;margin:0;}
+.rc-desc{font-size:.8rem;color:#4A5A70;line-height:1.6;flex:1;}
+.rc-action{display:inline-flex;align-items:center;gap:6px;background:rgba(240,128,25,.1);border:1px solid rgba(240,128,25,.25);color:#F08019;font-size:.75rem;font-weight:700;padding:7px 14px;border-radius:999px;margin-top:4px;width:fit-content;}
+.rc-action.wa{background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.3);color:#16a34a;}
+.rc-action.dl{background:rgba(22,54,92,.06);border-color:rgba(22,54,92,.15);color:#16365C;}
+
+/* DIVIDER */
+.section-label{max-width:900px;margin:0 auto 16px;padding:0 20px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4A5A70;}
+
+/* WHATSAPP CTA */
+.wa-section{max-width:900px;margin:0 auto;padding:0 20px 80px;}
+.wa-card{background:white;border:2px solid rgba(37,211,102,.3);border-radius:16px;padding:28px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;box-shadow:0 4px 16px rgba(22,54,92,.06);}
+.wa-left{flex:1;min-width:200px;}
+.wa-left h3{font-size:1.1rem;font-weight:800;margin-bottom:6px;color:#16365C;}
+.wa-left p{font-size:.85rem;color:#4A5A70;line-height:1.6;}
+.wa-btn{display:inline-block;background:#25D366;color:#ffffff;text-decoration:none;font-weight:700;font-size:.9rem;padding:13px 24px;border-radius:8px;white-space:nowrap;}
+.wa-btn:hover{background:#20bc5c;}
+
+/* FOOTER */
+footer{background:#16365C;padding:24px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+footer p{font-size:.72rem;color:rgba(255,255,255,.4);}
+footer a{color:rgba(255,255,255,.5);text-decoration:none;}
+
+@media(max-width:600px){
+  nav{padding:14px 20px;}
+  .wa-card{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <img src="https://afcademia.com/wp-content/uploads/elementor/thumbs/Logo-oficial-web1-roi228ovmhvrlj6jft9zhc1gx83mr0szwn28g88atg.png" alt="AFCademIA" class="nav-logo"/>
+  <span class="nav-badge">Recursos exclusivos · Webinar 1 Jul 2026</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-icon">🎉</div>
+  <h1>Aquí están todos<br/>tus <em>entregables</em></h1>
+  <p>Recursos exclusivos para los asistentes al webinar. Descárgalos, imprímelos o guárdalos — son tuyos.</p>
+</div>
+
+<div class="section-label">Materiales del webinar</div>
+<div class="recursos">
+
+  <a href="prompts-claude.html" class="recurso-card" target="_blank">
+    <div class="rc-top"><div class="rc-icon">📋</div><div class="rc-title">Los 10 Prompts de Claude para Administradores de Fincas</div></div>
+    <div class="rc-tag">Claude · IA</div>
+    <div class="rc-desc">Copia, pega y adapta. Circulares, actas, reclamaciones, burofax y certificados listos en segundos.</div>
+    <div class="rc-action">Abrir guía →</div>
+  </a>
+
+  <a href="cheatsheet.html" class="recurso-card" target="_blank">
+    <div class="rc-top"><div class="rc-icon">⚡</div><div class="rc-title">Cheatsheet · Referencia rápida</div></div>
+    <div class="rc-tag">Las 3 herramientas</div>
+    <div class="rc-desc">TextExpander + Claude + Make en una sola página. Para tener a mano mientras empiezas a usarlas.</div>
+    <div class="rc-action">Abrir cheatsheet →</div>
+  </a>
+
+  <a href="guia-inicio.html" class="recurso-card" target="_blank">
+    <div class="rc-top"><div class="rc-icon">🚀</div><div class="rc-title">Cómo empezar con cada herramienta desde cero</div></div>
+    <div class="rc-tag">Guía de inicio</div>
+    <div class="rc-desc">Paso a paso para configurar TextExpander, Claude y Make en menos de una hora. Sin experiencia técnica.</div>
+    <div class="rc-action">Abrir guía →</div>
+  </a>
+
+  <a href="make-blueprint.json" class="recurso-card" download>
+    <div class="rc-top"><div class="rc-icon">⚙️</div><div class="rc-title">Blueprint de Gestión de Incidencias</div></div>
+    <div class="rc-tag">Make · Blueprint</div>
+    <div class="rc-desc">El escenario de Make que vimos en el webinar. Importa el JSON y conecta tus cuentas de Google.</div>
+    <div class="rc-action dl">Descargar JSON →</div>
+  </a>
+
+</div>
+
+<div class="section-label">Comunidad</div>
+<div class="wa-section">
+  <div class="wa-card">
+    <div class="wa-left">
+      <h3>💬 Grupo de WhatsApp · Webinar AFCademIA</h3>
+      <p>El grupo sigue activo. Si tienes dudas mientras pones en marcha alguna herramienta, escríbeme ahí. También publicaré recursos adicionales.</p>
+    </div>
+    <a href="https://chat.whatsapp.com/DYsabqb5FMSJRVH0uk6l0S" class="wa-btn" target="_blank">Entrar al grupo →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 AFCademIA · cursos@afcademia.com · 661 239 319</p>
+  <p><a href="https://afcademia.com/politica-de-privacidad/">Política de privacidad</a> · <a href="https://afcademia.com/aviso-legal/">Aviso legal</a> · <a href="https://afcademia.com/politica-de-cookies/">Política de cookies</a></p>
+</footer>
+
+</body>
+</html>

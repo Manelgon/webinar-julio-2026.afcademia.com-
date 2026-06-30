@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Checklist Técnico · Webinar AFCademIA · 1 jul 2026</title>
+<style>
+  :root{--azul:#16365C;--naranja:#F08019;--cream:#F5F8FC;--gris:#4A5A70;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  @media print{body{background:white;padding:0;}.no-print{display:none;}@page{margin:14mm 14mm;}}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#e8edf3;padding:32px 16px;color:var(--azul);font-size:12px;}
+  .page{width:794px;background:white;margin:0 auto 32px;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.12);overflow:hidden;}
+  .page-header{background:var(--azul);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;}
+  .page-header .logo{height:30px;width:auto;}
+  .page-header .seccion{color:rgba(255,255,255,.6);font-size:.72rem;}
+  .body{padding:22px 28px 30px;}
+  h1{font-size:1.4rem;font-weight:800;color:var(--azul);margin-bottom:4px;}
+  .meta{font-size:.75rem;color:var(--gris);margin-bottom:14px;line-height:1.6;}
+  .accent{width:40px;height:3px;background:var(--naranja);border-radius:2px;margin-bottom:16px;}
+  h2{font-size:.88rem;font-weight:800;color:white;background:var(--azul);padding:6px 12px;border-radius:5px;margin:16px 0 8px;}
+  input[type=checkbox]{width:13px;height:13px;accent-color:var(--naranja);margin-right:5px;}
+  .check-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:5px 16px;margin:6px 0;}
+  .check-list li{display:flex;align-items:flex-start;gap:5px;font-size:.78rem;line-height:1.4;}
+  .check-list.single{grid-template-columns:1fr;}
+  table{width:100%;border-collapse:collapse;font-size:.75rem;margin-bottom:14px;}
+  th{background:var(--azul);color:white;padding:6px 8px;text-align:left;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;}
+  td{padding:6px 8px;border-bottom:1px solid #e8edf3;vertical-align:top;line-height:1.45;}
+  tr:nth-child(even) td{background:var(--cream);}
+  .tip{background:rgba(240,128,25,.08);border:1px solid var(--naranja);border-radius:6px;padding:8px 12px;margin:10px 0;font-size:.75rem;line-height:1.5;}
+  .tip strong{color:var(--naranja);}
+  .urgente{background:#fff0f0;border:2px solid #e53e3e;border-radius:6px;padding:10px 14px;margin:10px 0;}
+  .urgente h3{color:#e53e3e;font-size:.8rem;font-weight:700;margin-bottom:6px;text-transform:uppercase;}
+  .page-footer{padding:8px 28px;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:.68rem;color:var(--gris);}
+  .print-btn{position:fixed;bottom:24px;right:24px;background:var(--naranja);color:white;border:none;border-radius:999px;padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(240,128,25,.4);}
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">🖨️ Guardar PDF</button>
+<div class="page">
+  <div class="page-header">
+    <img src="../../logo-afcademia.png" alt="AFCademIA" class="logo"/>
+    <span class="seccion">Checklist Técnico · Completar 30-jun + 1-jul T-60 min</span>
+  </div>
+  <div class="body">
+    <h1>Checklist Técnico Pre-Webinar</h1>
+    <p class="meta">Completar el día antes (30 de junio) y de nuevo el día del webinar (T-60 min = 11:00 h).</p>
+    <div class="accent"></div>
+
+    <h2>📅 DÍA ANTES — 30 de junio</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px">
+      <div>
+        <p style="font-size:.75rem;font-weight:700;color:var(--naranja);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Zoom</p>
+        <ul class="check-list single">
+          <li><input type="checkbox"/>Sala de espera activada</li>
+          <li><input type="checkbox"/>Grabación automática en la nube activada</li>
+          <li><input type="checkbox"/>Compartir pantalla: solo anfitrión</li>
+          <li><input type="checkbox"/>Chat de participantes activado</li>
+          <li><input type="checkbox"/>Probar enlace desde otro dispositivo</li>
+        </ul>
+        <p style="font-size:.75rem;font-weight:700;color:var(--naranja);margin:10px 0 6px;text-transform:uppercase;letter-spacing:.06em">TextExpander</p>
+        <ul class="check-list single">
+          <li><input type="checkbox"/>Snippets :rasc, :rcuota, :rjunta, :rcorte creados</li>
+          <li><input type="checkbox"/>Probados en Gmail: escribir atajo → verificar expansión</li>
+          <li><input type="checkbox"/>App activa en el sistema (no solo instalada)</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:700;color:var(--naranja);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Make.com</p>
+        <ul class="check-list single">
+          <li><input type="checkbox"/>Escenario activo (toggle verde)</li>
+          <li><input type="checkbox"/>Prueba completa: email → Sheets → acuse recibido</li>
+          <li><input type="checkbox"/>Email de prueba guardado en borradores</li>
+          <li><input type="checkbox"/>Google Sheets con prueba visible (contingencia)</li>
+        </ul>
+        <p style="font-size:.75rem;font-weight:700;color:var(--naranja);margin:10px 0 6px;text-transform:uppercase;letter-spacing:.06em">Claude</p>
+        <ul class="check-list single">
+          <li><input type="checkbox"/>Cuenta activa, sesión iniciada</li>
+          <li><input type="checkbox"/>Ensayo completo de los 3 prompts realizado</li>
+          <li><input type="checkbox"/>Resultados guardados (contingencia si va lento)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size:.75rem;font-weight:700;color:var(--naranja);margin:10px 0 6px;text-transform:uppercase;letter-spacing:.06em">Audio, vídeo y slides</p>
+    <ul class="check-list">
+      <li><input type="checkbox"/>Micro probado (Zoom "Test Speaker & Microphone")</li>
+      <li><input type="checkbox"/>Cámara encuadrada, buena iluminación frontal</li>
+      <li><input type="checkbox"/>Fondo ordenado o virtual activado</li>
+      <li><input type="checkbox"/>slides.html probada en pantalla completa (F11)</li>
+    </ul>
+
+    <h2>⏰ DÍA DEL WEBINAR — T-60 MIN (11:00 h)</h2>
+    <ul class="check-list">
+      <li><input type="checkbox"/>Ordenador enchufado a la corriente</li>
+      <li><input type="checkbox"/>Actualizaciones automáticas desactivadas</li>
+      <li><input type="checkbox"/>Notificaciones silenciadas (No molestar)</li>
+      <li><input type="checkbox"/>Móvil en silencio o modo avión</li>
+      <li><input type="checkbox"/>Speedtest: mínimo 10 Mbps de subida</li>
+      <li><input type="checkbox"/>Otras personas en casa avisadas (sin descargas)</li>
+    </ul>
+    <p style="font-size:.75rem;font-weight:700;color:var(--gris);margin:8px 0 5px">Pestañas abiertas (y solo estas):</p>
+    <ul class="check-list">
+      <li><input type="checkbox"/>1. Zoom (app de escritorio)</li>
+      <li><input type="checkbox"/>2. slides.html en navegador</li>
+      <li><input type="checkbox"/>3. TextExpander (app activa)</li>
+      <li><input type="checkbox"/>4. Gmail cuenta comunidad</li>
+      <li><input type="checkbox"/>5. Make.com (escenario activo)</li>
+      <li><input type="checkbox"/>6. Google Sheets (registro)</li>
+      <li><input type="checkbox"/>7. Claude.ai (conversación nueva)</li>
+      <li><input type="checkbox"/>8. Documento con los 3 prompts</li>
+    </ul>
+
+    <h2>⚙️ Configuración Zoom</h2>
+    <table>
+      <thead><tr><th>Opción</th><th>Dónde activarla</th></tr></thead>
+      <tbody>
+        <tr><td>Sala de espera</td><td>Mis reuniones → Editar → Seguridad → Sala de espera ✓</td></tr>
+        <tr><td>Grabación en nube</td><td>Mis reuniones → Editar → Grabación → Grabar en la nube ✓</td></tr>
+        <tr><td>Chat participantes</td><td>Durante la reunión → Chat → … → Todos</td></tr>
+        <tr><td>Co-anfitrión asistente</td><td>Clic en nombre del asistente → Hacer co-anfitrión</td></tr>
+      </tbody>
+    </table>
+
+    <div class="urgente">
+      <h3>🆘 Plan de contingencia técnica</h3>
+      <table style="margin:0">
+        <thead><tr><th>Problema</th><th>Acción inmediata</th></tr></thead>
+        <tbody>
+          <tr><td>Se cae internet</td><td>Activar hotspot del móvil. Reconectar Zoom. "Volvemos en 30 segundos."</td></tr>
+          <tr><td>Falla TextExpander</td><td>"Os muestro el resultado directamente." → slide con texto del snippet</td></tr>
+          <tr><td>Falla Make</td><td>"Os muestro la hoja que preparé ayer." → Google Sheets pre-rellenado</td></tr>
+          <tr><td>Claude lento</td><td>"Os muestro los resultados de ayer con el mismo prompt." → doc guardado</td></tr>
+          <tr><td>No me oyen</td><td>Asistente escribe en chat "¿Nos oyes?" → comprobar micro → reconectar si hace falta</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>✅ Post-webinar</h2>
+    <ul class="check-list single">
+      <li><input type="checkbox"/>Grabación procesada en Zoom (Recordings → Cloud Recordings)</li>
+      <li><input type="checkbox"/>Descargar grabación y guardar en local / Drive</li>
+      <li><input type="checkbox"/>Exportar lista de asistentes desde Zoom (Reports → Usage)</li>
+      <li><input type="checkbox"/>Asistente confirma envío del lead magnet por WhatsApp</li>
+      <li><input type="checkbox"/>Responder preguntas del Q&amp;A sin responder por WhatsApp</li>
+    </ul>
+  </div>
+  <div class="page-footer">
+    <span style="color:var(--naranja)">AFCademIA</span> · Uso interno · Webinar 1-jul-2026
+    <span>cursos@afcademia.com · 661 239 319</span>
+  </div>
+</div>
+</body>
+</html>

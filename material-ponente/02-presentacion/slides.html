@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Webinar AFCademIA — Las 3 Herramientas de IA · 1 jul 2026</title>
+<style>
+  /* ===== VARIABLES MARCA AFCademIA ===== */
+  :root {
+    --azul:    #16365C;
+    --azul2:   #1E4A7A;
+    --naranja: #F08019;
+    --naranja2:#F9A65A;
+    --cream:   #F5F8FC;
+    --gris:    #4A5A70;
+    --blanco:  #FFFFFF;
+    --slide-w: 1280px;
+    --slide-h: 720px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1a1a2e;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 40px 20px;
+  }
+
+  /* ===== CONTROLES ===== */
+  .controls {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    background: rgba(22,54,92,0.95);
+    border: 1px solid var(--naranja);
+    border-radius: 999px;
+    padding: 10px 20px;
+    z-index: 100;
+    align-items: center;
+  }
+  .controls button {
+    background: var(--naranja);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px; height: 36px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  .controls button:hover { background: var(--naranja2); }
+  .controls span { color: white; font-size: 0.85rem; min-width: 80px; text-align: center; }
+
+  /* ===== SLIDE BASE ===== */
+  .slide {
+    width: var(--slide-w);
+    height: var(--slide-h);
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.5);
+    display: none;
+    flex-direction: column;
+  }
+  .slide.active { display: flex; }
+
+  /* Número de slide (esquina superior derecha) */
+  .slide-num {
+    position: absolute;
+    top: 18px; right: 24px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    z-index: 10;
+  }
+
+  /* Logo pequeño (pie de todas las slides de contenido) */
+  .logo-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 48px;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    gap: 12px;
+  }
+  .logo-bar .marca {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .logo-bar .marca span { color: var(--naranja); }
+  .logo-bar .sep { flex: 1; }
+  .logo-bar .dato { color: rgba(255,255,255,0.6); font-size: 0.75rem; }
+
+  /* Línea naranja decorativa */
+  .accent-line {
+    width: 64px; height: 4px;
+    background: var(--naranja);
+    border-radius: 2px;
+    margin: 12px 0 20px;
+  }
+
+  /* ===== SLIDE S-00: ESPERA ===== */
+  .slide-espera {
+    background: var(--azul);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .slide-espera::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(240,128,25,0.15) 0%, transparent 65%);
+  }
+  .slide-espera .badge {
+    background: var(--naranja);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .slide-espera h1 {
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 780px;
+    margin: 0 auto 24px;
+  }
+  .slide-espera h1 em { color: var(--naranja); font-style: normal; }
+  .slide-espera .meta {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+  .slide-espera .comienza {
+    margin-top: 40px;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.45} 50%{opacity:1} }
+  .slide-espera .marca-espera {
+    position: absolute;
+    top: 28px; left: 36px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+  .slide-espera .marca-espera span { color: var(--naranja); }
+
+  /* ===== SLIDE TIPO: PORTADA DE BLOQUE ===== */
+  .slide-portada {
+    background: var(--azul);
+    justify-content: flex-end;
+    padding: 0 0 80px 64px;
+  }
+  .slide-portada::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: rgba(240,128,25,0.12);
+  }
+  .slide-portada::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--naranja);
+  }
+  .slide-portada .numero-bloque {
+    color: var(--naranja);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .slide-portada h2 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    max-width: 700px;
+    margin-bottom: 16px;
+  }
+  .slide-portada h2 em { color: var(--naranja); font-style: normal; }
+  .slide-portada .subtitulo {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.15rem;
+    max-width: 560px;
+  }
+
+  /* ===== SLIDE TIPO: CONTENIDO CLARO ===== */
+  .slide-contenido {
+    background: var(--cream);
+    padding: 52px 64px 68px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .slide-contenido .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 6px;
+  }
+  .slide-contenido h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--azul);
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+
+  /* ===== SLIDE TIPO: FONDO OSCURO CONTENIDO ===== */
+  .slide-dark {
+    background: var(--azul2);
+    padding: 52px 64px 68px;
+    flex-direction: column;
+  }
+  .slide-dark .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 6px;
+  }
+  .slide-dark h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+
+  /* ===== PILLS / LISTA ===== */
+  .pill-list { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+  .pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: white;
+    border-left: 4px solid var(--naranja);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .pill .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .pill .text strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--azul); }
+  .pill .text span { font-size: 0.85rem; color: var(--gris); }
+
+  .pill-dark {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255,255,255,0.08);
+    border-left: 4px solid var(--naranja);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 20px;
+  }
+  .pill-dark .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .pill-dark .text strong { display: block; font-size: 0.95rem; font-weight: 700; color: white; }
+  .pill-dark .text span { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+  /* ===== BIG STAT ===== */
+  .big-stat {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--naranja);
+    line-height: 1;
+  }
+  .big-stat-label {
+    font-size: 1.1rem;
+    color: var(--gris);
+    margin-top: 4px;
+  }
+
+  /* ===== COLUMNAS ===== */
+  .cols { display: flex; gap: 24px; flex: 1; margin-top: 8px; }
+  .col { flex: 1; }
+
+  /* ===== DIAGRAMA FLUJO ===== */
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 24px;
+    flex-wrap: nowrap;
+  }
+  .flow-box {
+    background: white;
+    border: 2px solid var(--azul);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+  }
+  .flow-box .fb-icon { font-size: 1.8rem; margin-bottom: 6px; }
+  .flow-box .fb-label { font-size: 0.8rem; font-weight: 700; color: var(--azul); }
+  .flow-box .fb-sub { font-size: 0.72rem; color: var(--gris); margin-top: 2px; }
+  .flow-arrow {
+    color: var(--naranja);
+    font-size: 1.6rem;
+    font-weight: 900;
+    padding: 0 6px;
+    flex-shrink: 0;
+  }
+
+  /* ===== TABLA RESUMEN ===== */
+  .resumen-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 0.9rem;
+  }
+  .resumen-tabla th {
+    background: var(--azul);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .resumen-tabla td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e8edf3;
+    color: var(--azul);
+    vertical-align: middle;
+  }
+  .resumen-tabla tr:nth-child(even) td { background: #f0f4f8; }
+  .resumen-tabla .herramienta { font-weight: 700; }
+  .resumen-tabla .tag {
+    background: var(--naranja);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+
+  /* ===== SLIDE PREGUNTA/CHAT ===== */
+  .chat-bubble {
+    background: white;
+    border-radius: 20px 20px 20px 4px;
+    padding: 20px 28px;
+    max-width: 680px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    margin-top: 24px;
+  }
+  .chat-bubble p {
+    font-size: 1.2rem;
+    color: var(--azul);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .chat-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--naranja);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* ===== SLIDE DE DEMO ===== */
+  .demo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--naranja);
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  /* ===== SLIDE CTA ===== */
+  .slide-cta {
+    background: linear-gradient(135deg, var(--azul) 0%, #0d2440 100%);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 48px;
+  }
+  .slide-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(240,128,25,0.2) 0%, transparent 65%);
+  }
+  .slide-cta h2 {
+    color: white;
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .slide-cta h2 em { color: var(--naranja); font-style: normal; }
+  .slide-cta .cta-box {
+    background: var(--naranja);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 18px 48px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-top: 28px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(240,128,25,0.4);
+  }
+  .slide-cta .detalle {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+    margin-top: 20px;
+    position: relative;
+  }
+
+  /* ===== SLIDE LEAD MAGNET ===== */
+  .lm-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 20px;
+    max-width: 700px;
+  }
+  .lm-card .lm-icon { font-size: 3rem; flex-shrink: 0; }
+  .lm-card h4 { font-size: 1rem; font-weight: 800; color: var(--azul); margin-bottom: 4px; }
+  .lm-card p { font-size: 0.85rem; color: var(--gris); line-height: 1.5; }
+
+  /* ===== SLIDE DESPEDIDA ===== */
+  .slide-despedida {
+    background: var(--azul);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .slide-despedida::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(240,128,25,0.15) 0%, transparent 60%);
+  }
+  .slide-despedida h2 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .slide-despedida .gracias-sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.1rem;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .slide-despedida .contacto-grid {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    position: relative;
+  }
+  .contacto-item {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 14px 24px;
+    color: white;
+    font-size: 0.9rem;
+  }
+  .contacto-item strong { display: block; color: var(--naranja); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+
+  /* ===== PERFIL PONENTE ===== */
+  .perfil-box {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-top: 16px;
+  }
+  .avatar-placeholder {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--naranja) 0%, var(--naranja2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    flex-shrink: 0;
+    border: 4px solid white;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .perfil-info h4 { font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 4px; }
+  .perfil-info .cargo { color: var(--naranja); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+  .perfil-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .perfil-bullets li { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+  .perfil-bullets li::before { content: '✦ '; color: var(--naranja); }
+</style>
+</head>
+<body>
+
+<!-- ===== CONTROLES NAVEGACIÓN ===== -->
+<div class="controls">
+  <button onclick="prevSlide()">&#8592;</button>
+  <span id="slide-counter">1 / 20</span>
+  <button onclick="nextSlide()">&#8594;</button>
+</div>
+
+<!-- ===================================================
+     S-00: SALA DE ESPERA
+     =================================================== -->
+<div class="slide slide-espera active" id="s0">
+  <div class="marca-espera"><img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:120px;width:auto;"/></div>
+  <div class="badge">Webinar gratuito · 1 de julio de 2026</div>
+  <h1>Las <em>3 Herramientas</em> de IA y Automatización que Todo Administrador de Fincas Debería Conocer en 2026</h1>
+  <p class="meta">📅 Miércoles 1 jul · 🕛 12:00 h · 💻 Zoom</p>
+  <p class="meta">Ponente: <strong style="color:white">Roberto Díaz · AFCademIA</strong></p>
+  <p class="comienza">Comenzamos en unos momentos · Bienvenido/a</p>
+  <div class="slide-num">S-00</div>
+</div>
+
+<!-- ===================================================
+     S-01: BIENVENIDA
+     =================================================== -->
+<div class="slide slide-portada" id="s1">
+  <div class="numero-bloque">Bienvenida</div>
+  <h2>¡Buenos días!<br/><em>¿Me escucháis bien?</em></h2>
+  <p class="subtitulo">Escribid en el chat de dónde sois 👇</p>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-01</div>
+</div>
+
+<!-- ===================================================
+     S-02: QUIÉN ES ROBERTO
+     =================================================== -->
+<div class="slide slide-dark" id="s2">
+  <div class="eyebrow">El ponente</div>
+  <h3>Quién es Roberto</h3>
+  <div class="accent-line"></div>
+  <div class="perfil-box">
+    <img src="../../afcademia_header_email.png" alt="Roberto Díaz" style="width:320px;height:420px;object-fit:cover;object-position:center top;border-radius:12px;flex-shrink:0;box-shadow:0 8px 32px rgba(0,0,0,0.35);"/>
+    <div class="perfil-info">
+      <h4>Roberto Díaz</h4>
+      <div class="cargo">Administrador de Fincas · Fundador de AFCademIA</div>
+      <ul class="perfil-bullets">
+        <li>Más de 10 años en administración de comunidades de propietarios</li>
+        <li>A la vanguardia de la adopción de IA y automatización en el sector</li>
+        <li>Formador especializado en herramientas digitales para administradores</li>
+        <li>Fundador de AFCademIA — formación práctica para el sector</li>
+      </ul>
+    </div>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">afcademia.com</span>
+  </div>
+  <div class="slide-num">S-02</div>
+</div>
+
+<!-- ===================================================
+     S-03: AGENDA
+     =================================================== -->
+<div class="slide slide-contenido" id="s3">
+  <div class="eyebrow">Plan de hoy · 60 minutos</div>
+  <h3>Lo que veremos juntos</h3>
+  <div class="accent-line"></div>
+  <div class="pill-list">
+    <div class="pill">
+      <div class="icon">⌨️</div>
+      <div class="text"><strong>TextExpander — Escribe más con menos</strong><span>Respuestas profesionales en segundos, no en minutos</span></div>
+    </div>
+    <div class="pill">
+      <div class="icon">🤖</div>
+      <div class="text"><strong>Claude IA — Redacción profesional en minutos</strong><span>Convocatorias, actas, respuestas a propietarios y resúmenes de presupuestos</span></div>
+    </div>
+    <div class="pill">
+      <div class="icon">⚙️</div>
+      <div class="text"><strong>Make.com — Incidencias que se gestionan solas</strong><span>Automatizar el flujo de entrada, registro y aviso de incidencias</span></div>
+    </div>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-03</div>
+</div>
+
+<!-- ===================================================
+     S-04: GANCHO
+     =================================================== -->
+<div class="slide slide-dark" id="s4">
+  <div class="eyebrow">Pregunta para el chat</div>
+  <h3 style="max-width:700px">¿Cuántas horas a la semana dedicas a responder emails que son prácticamente siempre lo mismo?</h3>
+  <div class="accent-line"></div>
+  <div style="display:flex; gap:20px; margin-top:8px">
+    <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:16px 24px;text-align:center;flex:1">
+      <div style="font-size:2.2rem;font-weight:900;color:var(--naranja)">2-3 h</div>
+      <div style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:4px">cartera pequeña</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:16px 24px;text-align:center;flex:1">
+      <div style="font-size:2.2rem;font-weight:900;color:var(--naranja)">5-6 h</div>
+      <div style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:4px">cartera media</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:16px 24px;text-align:center;flex:1">
+      <div style="font-size:2.2rem;font-weight:900;color:var(--naranja)">8+ h</div>
+      <div style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:4px">cartera grande</div>
+    </div>
+  </div>
+  <div style="margin-top:20px;background:rgba(240,128,25,0.15);border-left:4px solid var(--naranja);border-radius:0 10px 10px 0;padding:16px 20px;max-width:680px">
+    <p style="color:white;font-size:0.95rem">Eso son entre <strong style="color:var(--naranja)">12 y 32 horas al mes</strong> escribiendo prácticamente lo mismo. La primera herramienta de hoy va directo a ese problema.</p>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">Escribe tu respuesta en el chat 👇</span>
+  </div>
+  <div class="slide-num">S-04</div>
+</div>
+
+<!-- ===================================================
+     S-05: HERRAMIENTA 1 — PORTADA TEXTEXPANDER
+     =================================================== -->
+<div class="slide slide-portada" id="s5">
+  <div class="numero-bloque">Herramienta 1 de 3</div>
+  <h2><em>TextExpander</em><br/>Escribe más con menos</h2>
+  <p class="subtitulo">Como responder más rápido con datos y plantillas predefinidas</p>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-05</div>
+</div>
+
+<!-- ===================================================
+     S-06: QUÉ ES TEXTEXPANDER
+     =================================================== -->
+<div class="slide slide-contenido" id="s6">
+  <div class="eyebrow">TextExpander · Concepto</div>
+  <h3>Un atajo de teclado = un email completo</h3>
+  <div class="accent-line"></div>
+  <div class="cols">
+    <div class="col">
+      <div class="pill-list">
+        <div class="pill">
+          <div class="icon">✍️</div>
+          <div class="text"><strong>Escribes 3 letras</strong><span>Por ejemplo: <code style="background:#eef2f7;padding:2px 6px;border-radius:4px;font-family:monospace">:rasc</code></span></div>
+        </div>
+        <div class="pill">
+          <div class="icon">⚡</div>
+          <div class="text"><strong>TextExpander lo expande al instante</strong><span>Email completo, con saludo, cuerpo y firma</span></div>
+        </div>
+        <div class="pill">
+          <div class="icon">✅</div>
+          <div class="text"><strong>Funciona en cualquier app</strong><span>Gmail, Outlook, WhatsApp Web, Word, cualquier sitio donde escribas</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="background:var(--azul);border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+      <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--naranja);margin-bottom:12px">Escribes</div>
+      <div style="font-size:2.5rem;font-weight:900;font-family:monospace;color:white;background:rgba(255,255,255,0.1);padding:10px 24px;border-radius:8px;letter-spacing:0.1em">:rasc</div>
+      <div style="color:var(--naranja);font-size:2rem;margin:12px 0">↓</div>
+      <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--naranja);margin-bottom:12px">Y aparece</div>
+      <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:12px 16px;text-align:left;font-size:0.72rem;color:rgba(255,255,255,0.85);line-height:1.6">
+        Estimado/a Sr./Sra. García Ruiz,<br/>
+        Le confirmamos que la avería del ascensor<br/>
+        está registrada con referencia INC-…<br/>
+        <em style="color:rgba(255,255,255,0.4)">[firma completa]</em>
+      </div>
+    </div>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">Demo en vivo a continuación →</span>
+  </div>
+  <div class="slide-num">S-06</div>
+</div>
+
+<!-- ===================================================
+     S-07: RECAP TEXTEXPANDER
+     =================================================== -->
+<div class="slide slide-contenido" id="s7">
+  <div class="eyebrow">Como responder más rápido con datos y plantillas predefinidas</div>
+  <h3>¿Cuánto tiempo acabáis de ver ahorrar?</h3>
+  <div class="accent-line"></div>
+  <div class="cols" style="align-items:flex-start">
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">10 s</div>
+      <div class="big-stat-label">por email respondido</div>
+    </div>
+    <div style="width:1px;background:#ddd;align-self:stretch"></div>
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">45 min</div>
+      <div class="big-stat-label">ahorrados al día<br/>(15 emails × 3 min)</div>
+    </div>
+    <div style="width:1px;background:#ddd;align-self:stretch"></div>
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">3 h</div>
+      <div class="big-stat-label">devueltas a la semana<br/>solo en correo</div>
+    </div>
+  </div>
+  <div style="background:var(--azul);border-radius:12px;padding:16px 24px;margin-top:16px;display:flex;align-items:center;gap:16px">
+    <div style="font-size:1.8rem">💬</div>
+    <p style="color:rgba(255,255,255,0.9);font-size:0.95rem"><strong style="color:var(--naranja)">Pregunta para el chat:</strong> ¿Esto os sería útil en vuestro día a día?</p>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-07</div>
+</div>
+
+<!-- ===================================================
+     S-08: TRANSICIÓN A MAKE
+     =================================================== -->
+<div class="slide slide-portada" id="s8">
+  <div class="numero-bloque">Herramienta 2 de 3</div>
+  <h2><em>Claude IA</em><br/>Redacción profesional<br/>en minutos</h2>
+  <p class="subtitulo">Convocatorias, actas, respuestas y resúmenes generados al instante</p>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-08</div>
+</div>
+
+<!-- ===================================================
+     S-09: EL PROBLEMA — INCIDENCIAS
+     =================================================== -->
+<div class="slide slide-dark" id="s9">
+  <div class="eyebrow">Claude IA · El problema</div>
+  <h3>¿Cuánto tardas en redactar el acta de una junta?</h3>
+  <div class="accent-line"></div>
+  <div class="pill-list">
+    <div class="pill-dark">
+      <div class="icon">📝</div>
+      <div class="text"><strong>Acta de junta ordinaria</strong><span>Entre 60 y 120 minutos de redacción + revisión</span></div>
+    </div>
+    <div class="pill-dark">
+      <div class="icon">📬</div>
+      <div class="text"><strong>Convocatoria formal</strong><span>15-20 minutos buscando la plantilla, adaptando datos, revisando</span></div>
+    </div>
+    <div class="pill-dark">
+      <div class="icon">😤</div>
+      <div class="text"><strong>Respuesta a vecino enfadado</strong><span>10 minutos… y siempre queda la duda de si el tono es el adecuado</span></div>
+    </div>
+  </div>
+  <div style="margin-top:14px;background:rgba(240,128,25,0.15);border-left:4px solid var(--naranja);border-radius:0 10px 10px 0;padding:14px 20px">
+    <p style="color:white;font-size:0.9rem">Todo eso se puede reducir a <strong style="color:var(--naranja)">minutos</strong>. Y el resultado es de calidad profesional.</p>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">Demo en vivo → 3 casos reales</span>
+  </div>
+  <div class="slide-num">S-09</div>
+</div>
+
+<!-- ===================================================
+     S-10: QUÉ ES MAKE / DIAGRAMA
+     =================================================== -->
+<div class="slide slide-contenido" id="s10">
+  <div class="eyebrow">Claude IA · Concepto</div>
+  <h3>Un redactor experto disponible 24/7</h3>
+  <div class="accent-line"></div>
+  <div class="cols" style="align-items:flex-start">
+    <div class="col">
+      <div class="pill-list">
+        <div class="pill">
+          <div class="icon">💬</div>
+          <div class="text"><strong>Le describes lo que necesitas</strong><span>Como a un compañero muy capaz. Sin tecnicismos.</span></div>
+        </div>
+        <div class="pill">
+          <div class="icon">⚡</div>
+          <div class="text"><strong>Lo redacta en segundos</strong><span>Con tono profesional, contexto legal y el nivel de detalle que le pidas</span></div>
+        </div>
+        <div class="pill">
+          <div class="icon">✏️</div>
+          <div class="text"><strong>Tú revisas y envías</strong><span>Siempre el último ojo es el tuyo. Claude es el primer borrador.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="background:var(--azul);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:0.75rem;font-weight:700;color:var(--naranja);letter-spacing:0.1em;text-transform:uppercase">Lo que veremos hoy en demo</div>
+      <div style="color:white;font-size:0.9rem;display:flex;gap:10px;align-items:flex-start"><span>📋</span><span>Convocatoria de Junta Ordinaria</span></div>
+      <div style="color:white;font-size:0.9rem;display:flex;gap:10px;align-items:flex-start"><span>📩</span><span>Respuesta a queja de vecino</span></div>
+      <div style="color:white;font-size:0.9rem;display:flex;gap:10px;align-items:flex-start"><span>📊</span><span>Resumen de presupuesto de obra</span></div>
+      <div style="margin-top:8px;background:var(--naranja);border-radius:8px;padding:10px 14px;color:white;font-size:0.8rem;text-align:center;font-weight:700">3 documentos · 10 minutos</div>
+    </div>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">Demo en vivo a continuación →</span>
+  </div>
+  <div class="slide-num">S-10</div>
+</div>
+
+<!-- ===================================================
+     S-11: RECAP MAKE
+     =================================================== -->
+<div class="slide slide-contenido" id="s11">
+  <div class="eyebrow">Claude IA · Resultado</div>
+  <h3>3 documentos. 10 minutos. Calidad profesional.</h3>
+  <div class="accent-line"></div>
+  <div class="cols" style="align-items:flex-start">
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">10 min</div>
+      <div class="big-stat-label">con Claude</div>
+    </div>
+    <div style="width:1px;background:#ddd;align-self:stretch"></div>
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">2 h</div>
+      <div class="big-stat-label">sin Claude<br/>(mismo resultado)</div>
+    </div>
+    <div style="width:1px;background:#ddd;align-self:stretch"></div>
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">1–2 h</div>
+      <div class="big-stat-label">ahorradas por jornada<br/>en redacción</div>
+    </div>
+  </div>
+  <div style="background:var(--azul);border-radius:12px;padding:16px 24px;margin-top:16px;display:flex;align-items:center;gap:16px">
+    <div style="font-size:1.8rem">💬</div>
+    <p style="color:rgba(255,255,255,0.9);font-size:0.95rem"><strong style="color:var(--naranja)">Pregunta para el chat:</strong> ¿Con cuál de estos tres empezaríais mañana mismo?</p>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-11</div>
+</div>
+
+<!-- ===================================================
+     S-12: PORTADA CLAUDE
+     =================================================== -->
+<div class="slide slide-portada" id="s12">
+  <div class="numero-bloque">Herramienta 3 de 3</div>
+  <h2><em>Make.com</em><br/>Incidencias que se<br/>gestionan solas</h2>
+  <p class="subtitulo">De la incidencia del vecino al registro y el acuse… sin que toques nada</p>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-12</div>
+</div>
+
+<!-- ===================================================
+     S-13: EL PROBLEMA — REDACCIÓN
+     =================================================== -->
+<div class="slide slide-dark" id="s13">
+  <div class="eyebrow">Make.com · El problema</div>
+  <h3>¿Cuántas incidencias se han perdido por el camino?</h3>
+  <div class="accent-line"></div>
+  <div class="pill-list">
+    <div class="pill-dark">
+      <div class="icon">📱</div>
+      <div class="text"><strong>Una llega por WhatsApp</strong><span>"Ya la gestiono luego" → se olvida</span></div>
+    </div>
+    <div class="pill-dark">
+      <div class="icon">📧</div>
+      <div class="text"><strong>Otra llega por email</strong><span>Se queda sin leer entre 200 correos</span></div>
+    </div>
+    <div class="pill-dark">
+      <div class="icon">📋</div>
+      <div class="text"><strong>Ninguna queda registrada</strong><span>Un mes después, el propietario reclama y no tienes evidencia</span></div>
+    </div>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">Esto tiene solución →</span>
+  </div>
+  <div class="slide-num">S-13</div>
+</div>
+
+<!-- ===================================================
+     S-14: QUÉ ES CLAUDE
+     =================================================== -->
+<div class="slide slide-contenido" id="s14">
+  <div class="eyebrow">Make.com · Concepto</div>
+  <h3>El pegamento entre tus aplicaciones</h3>
+  <div class="accent-line"></div>
+  <p style="color:var(--gris);font-size:0.95rem;margin-bottom:8px">El propietario rellena un formulario. Make lo recibe y <strong>encadena todo lo demás solo</strong>.</p>
+  <div class="flow" style="margin-top:12px">
+    <div class="flow-box" style="padding:12px 10px">
+      <div class="fb-icon" style="font-size:1.5rem">📋</div>
+      <div class="fb-label">Formulario</div>
+      <div class="fb-sub">Propietario reporta incidencia</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="padding:12px 10px">
+      <div class="fb-icon" style="font-size:1.5rem">📊</div>
+      <div class="fb-label">Registro en Sheets</div>
+      <div class="fb-sub">Fecha, propietario, estado</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="border-color:var(--naranja);background:rgba(240,128,25,0.06);padding:12px 10px">
+      <div class="fb-icon" style="font-size:1.5rem">⚙️</div>
+      <div class="fb-label" style="color:var(--naranja)">Make.com</div>
+      <div class="fb-sub">Orquesta el flujo</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="padding:12px 10px">
+      <div class="fb-icon" style="font-size:1.5rem">🤖</div>
+      <div class="fb-label">Nodo IA</div>
+      <div class="fb-sub">Genera el email</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="padding:12px 10px">
+      <div class="fb-icon" style="font-size:1.5rem">✉️</div>
+      <div class="fb-label">Envío email</div>
+      <div class="fb-sub">Despacho · Proveedor · Propietario</div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--azul);border-radius:10px;padding:12px 20px;display:inline-flex;gap:12px;align-items:center">
+    <span style="font-size:1.2rem">⏱️</span>
+    <p style="color:white;font-size:0.9rem">Todo esto ocurre en <strong style="color:var(--naranja)">menos de 30 segundos</strong> desde que el propietario envía el formulario</p>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">Demo en vivo a continuación →</span>
+  </div>
+  <div class="slide-num">S-14</div>
+</div>
+
+<!-- ===================================================
+     S-15: RECAP CLAUDE
+     =================================================== -->
+<div class="slide slide-contenido" id="s15">
+  <div class="eyebrow">Make.com · Resultado</div>
+  <h3>Una incidencia registrada sin tocar el teclado</h3>
+  <div class="accent-line"></div>
+  <div class="cols" style="align-items:flex-start">
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">0 s</div>
+      <div class="big-stat-label">tiempo tuyo invertido</div>
+    </div>
+    <div style="width:1px;background:#ddd;align-self:stretch"></div>
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">1,5–3 h</div>
+      <div class="big-stat-label">ahorradas por semana<br/>(20 incidencias × 5-9 min)</div>
+    </div>
+    <div style="width:1px;background:#ddd;align-self:stretch"></div>
+    <div class="col" style="text-align:center;padding:16px">
+      <div class="big-stat">100%</div>
+      <div class="big-stat-label">trazabilidad<br/>sin esfuerzo</div>
+    </div>
+  </div>
+  <div style="background:var(--azul);border-radius:12px;padding:16px 24px;margin-top:16px;display:flex;align-items:center;gap:16px">
+    <div style="font-size:1.8rem">💬</div>
+    <p style="color:rgba(255,255,255,0.9);font-size:0.95rem"><strong style="color:var(--naranja)">Pregunta para el chat:</strong> ¿Cuántas incidencias gestionáis a la semana?</p>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-15</div>
+</div>
+
+<!-- ===================================================
+     S-16: RESUMEN LAS 3 HERRAMIENTAS
+     =================================================== -->
+<div class="slide slide-contenido" id="s16">
+  <div class="eyebrow">Resumen · Las 3 herramientas</div>
+  <h3>Lo que acabáis de ver en 60 minutos</h3>
+  <div class="accent-line"></div>
+  <table class="resumen-tabla">
+    <thead>
+      <tr>
+        <th>Herramienta</th>
+        <th>Para qué sirve</th>
+        <th>Ahorro estimado</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="herramienta">⌨️ TextExpander</td>
+        <td>Emails repetitivos en segundos</td>
+        <td><span class="tag">30-45 min/día</span></td>
+        <td>~4 €/mes</td>
+      </tr>
+      <tr>
+        <td class="herramienta">🤖 Claude IA</td>
+        <td>Redacción profesional al instante</td>
+        <td><span class="tag">1-2 h/jornada</span></td>
+        <td>Gratis / 18 €/mes</td>
+      </tr>
+      <tr>
+        <td class="herramienta">⚙️ Make.com</td>
+        <td>Incidencias registradas automáticamente</td>
+        <td><span class="tag">1,5-3 h/semana</span></td>
+        <td>Gratis / 9 €/mes</td>
+      </tr>
+      <tr style="border-top:2px solid var(--azul)">
+        <td class="herramienta" style="font-weight:700;color:var(--azul)">💰 Máximo total</td>
+        <td style="color:var(--gris);font-size:0.85rem">Las 3 herramientas contratadas</td>
+        <td><span class="tag">1-2 h devueltas/día</span></td>
+        <td style="font-weight:800;color:var(--azul);font-size:1rem">~31 €/mes</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="background:rgba(240,128,25,0.1);border:1.5px solid var(--naranja);border-radius:10px;padding:14px 20px;margin-top:12px;display:flex;gap:16px;align-items:center">
+    <span style="font-size:1.5rem">⏱️</span>
+    <p style="color:var(--azul);font-size:0.95rem">Las 3 juntas pueden devolverte <strong style="color:var(--naranja)">entre 1 y 2 horas cada día</strong> — entre 20 y 40 horas al mes</p>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-16</div>
+</div>
+
+<!-- ===================================================
+     S-17: Q&A
+     =================================================== -->
+<div class="slide slide-dark" id="s17">
+  <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;text-align:center;position:relative">
+    <div style="font-size:4rem;margin-bottom:16px">💬</div>
+    <h2 style="color:var(--naranja);font-size:2.8rem;font-weight:800;line-height:1.15;margin-bottom:16px">Ruegos y preguntas</h2>
+    <p style="color:rgba(255,255,255,0.6);font-size:1.05rem;max-width:560px">Escribid vuestras preguntas en el chat de Zoom.<br/>Tenemos <strong style="color:white">10 minutos.</strong></p>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-17</div>
+</div>
+
+<!-- ===================================================
+     S-18: CTA (parametrizado)
+     =================================================== -->
+<div class="slide slide-cta" id="s18">
+  <h2>La formación que el sector<br/>necesitaba: <em>ya viene</em></h2>
+  <p style="color:rgba(255,255,255,0.65);font-size:1.05rem;margin-top:8px;position:relative;max-width:620px">En AFCademIA estamos preparando cursos prácticos de IA y automatización <strong style="color:white">diseñados específicamente para administradores de fincas</strong>. Nada genérico: casos reales, nuestro sector.</p>
+  <div class="cta-box">Visita afcademia.com y suscríbete</div>
+  <p class="detalle">Los suscriptores tendrán acceso prioritario y condiciones especiales de lanzamiento</p>
+  <div class="logo-bar" style="position:absolute;bottom:0;left:0;right:0">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · 661 239 319</span>
+  </div>
+  <div class="slide-num">S-18</div>
+</div>
+
+<!-- ===================================================
+     S-19: LEAD MAGNET
+     =================================================== -->
+<div class="slide slide-dark" id="s19">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;position:relative">
+    <div class="eyebrow">El regalo de hoy</div>
+    <h3 style="max-width:620px">Os mando ahora mismo la guía con todo el material</h3>
+    <div class="accent-line"></div>
+    <div class="lm-card">
+      <div class="lm-icon">📥</div>
+      <div>
+        <h4>Guía Rápida: Las 3 Herramientas de IA para Administradores de Fincas</h4>
+        <p>6 plantillas de TextExpander listas para importar · Manual paso a paso de Make.com · 12 prompts de Claude para copiar y modificar</p>
+      </div>
+    </div>
+    <div style="margin-top:20px;background:rgba(240,128,25,0.15);border-left:4px solid var(--naranja);border-radius:0 10px 10px 0;padding:14px 20px;max-width:640px">
+      <p style="color:white;font-size:0.95rem">✉️ Os llega <strong style="color:var(--naranja)">al email</strong> que registrasteis en el formulario de inscripción.</p>
+    </div>
+  </div>
+  <div class="logo-bar">
+    <img src="../../icono-afcademia.webp" alt="AFCademIA" style="height:30px;width:auto;"/>
+    <span class="sep"></span>
+    <span class="dato">cursos@afcademia.com · afcademia.com</span>
+  </div>
+  <div class="slide-num">S-19</div>
+</div>
+
+<!-- ===================================================
+     S-20: DESPEDIDA
+     =================================================== -->
+<div class="slide slide-despedida" id="s20">
+  <h2 style="position:relative">¡Hasta pronto!</h2>
+  <p class="gracias-sub">Ha sido un placer. Cualquier duda, aquí estamos.</p>
+  <div class="contacto-grid">
+    <div class="contacto-item"><strong>Email</strong>cursos@afcademia.com</div>
+    <div class="contacto-item"><strong>Teléfono</strong>661 239 319</div>
+    <div class="contacto-item"><strong>Web</strong>afcademia.com</div>
+  </div>
+  <div style="margin-top:36px;color:rgba(255,255,255,0.3);font-size:0.8rem;position:relative">AFCademIA · Formación para Administradores de Fincas · 2026</div>
+  <div class="slide-num">S-20</div>
+</div>
+
+<!-- ===== SCRIPT NAVEGACIÓN ===== -->
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  const total = slides.length;
+
+  function updateCounter() {
+    document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
+  }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, total - 1));
+    slides[current].classList.add('active');
+    updateCounter();
+    slides[current].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function nextSlide() { goTo(current + 1); }
+  function prevSlide() { goTo(current - 1); }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+  });
+
+  updateCounter();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Make.com · Aviso al Proveedor · Gestión de Incidencias</title>
+<style>
+  :root{--azul:#16365C;--naranja:#F08019;--cream:#F5F8FC;--gris:#4A5A70;--verde:#1a8a4a;--rojo:#c5221f;--morado:#7c3aed;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  @media print{body{background:white;padding:0;}.no-print{display:none;}@page{margin:14mm 12mm;size:A4;}}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#e8edf3;padding:24px 16px;color:var(--azul);}
+  .page{width:860px;background:white;margin:0 auto 24px;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.12);overflow:hidden;}
+  .page-header{background:var(--azul);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;}
+  .page-header img{height:30px;width:auto;}
+  .page-header .titulo{color:white;font-size:.95rem;font-weight:700;}
+  .page-header .sub{color:rgba(255,255,255,.6);font-size:.72rem;}
+  .body{padding:28px 32px 36px;}
+  h1{font-size:1.2rem;font-weight:800;color:var(--azul);margin-bottom:4px;}
+  .meta{font-size:.78rem;color:var(--gris);margin-bottom:20px;line-height:1.6;}
+  .accent{width:48px;height:3px;background:var(--naranja);border-radius:2px;margin-bottom:24px;}
+  h2{font-size:.88rem;font-weight:800;color:white;background:var(--azul);padding:8px 14px;border-radius:6px;margin:24px 0 12px;display:flex;align-items:center;gap:8px;}
+
+  /* FLUJO */
+  .flujo{display:flex;align-items:flex-start;gap:0;margin-bottom:32px;flex-wrap:wrap;}
+  .nodo{flex:1;min-width:170px;}
+  .nodo-header{border-radius:8px 8px 0 0;padding:8px 12px;display:flex;align-items:center;gap:8px;}
+  .nodo-header .ico{width:26px;height:26px;border-radius:5px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+  .nodo-header .nom{color:white;font-size:.75rem;font-weight:700;line-height:1.3;}
+  .nodo-header .tip{color:rgba(255,255,255,.7);font-size:.62rem;text-transform:uppercase;}
+  .nodo-body{border:2px solid;border-top:none;border-radius:0 0 8px 8px;padding:10px 12px;background:white;font-size:.72rem;}
+  .campo{margin-bottom:7px;}
+  .campo:last-child{margin-bottom:0;}
+  .campo-l{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gris);margin-bottom:2px;}
+  .campo-v{background:var(--cream);border-radius:4px;padding:3px 7px;font-family:monospace;font-size:.68rem;word-break:break-all;line-height:1.4;color:var(--azul);}
+  .campo-v.warn{background:#fff3cd;color:#856404;}
+  .campo-v.verde{background:#e8f5e9;color:#145a32;}
+  .campo-v.var{background:#f3e8ff;color:#5b21b6;}
+
+  .flecha{display:flex;align-items:center;padding:0 6px;margin-top:44px;flex-shrink:0;}
+  .fl{width:32px;height:2px;background:var(--naranja);position:relative;}
+  .fl::after{content:'';position:absolute;right:-1px;top:-5px;border-left:9px solid var(--naranja);border-top:6px solid transparent;border-bottom:6px solid transparent;}
+
+  .n-sheets .nodo-header{background:var(--verde);}
+  .n-sheets .nodo-body{border-color:var(--verde);}
+  .n-openai .nodo-header{background:var(--morado);}
+  .n-openai .nodo-body{border-color:var(--morado);}
+  .n-gmail .nodo-header{background:var(--rojo);}
+  .n-gmail .nodo-body{border-color:var(--rojo);}
+
+  .badge{display:inline-block;font-size:.58rem;font-weight:700;padding:2px 6px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+  .b-trigger{background:#fde8e8;color:var(--rojo);}
+  .b-busqueda{background:#e8f5e9;color:var(--verde);}
+  .b-ia{background:#f3e8ff;color:var(--morado);}
+  .b-envio{background:#fde8e8;color:var(--rojo);}
+
+  /* PROMPTS */
+  .prompt-box{background:#1a1a2e;border-radius:8px;padding:16px 20px;margin-bottom:20px;}
+  .prompt-box .ptitulo{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+  .prompt-box .ptitulo.sys{color:#a78bfa;}
+  .prompt-box .ptitulo.usr{color:var(--naranja);}
+  .prompt-box pre{color:#e2e8f0;font-size:.72rem;line-height:1.7;white-space:pre-wrap;word-break:break-word;}
+  .prompt-box pre .var{color:#fbbf24;}
+  .prompt-box pre .com{color:#6b7280;font-style:italic;}
+
+  /* EJEMPLO */
+  .ejemplo{background:var(--cream);border-left:4px solid var(--naranja);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:20px;font-size:.78rem;line-height:1.7;color:var(--azul);}
+  .ejemplo strong{color:var(--naranja);}
+
+  /* TABLA */
+  table{width:100%;border-collapse:collapse;font-size:.73rem;margin-bottom:20px;}
+  th{background:var(--azul);color:white;padding:7px 10px;text-align:left;font-weight:700;}
+  td{padding:7px 10px;border-bottom:1px solid #eee;vertical-align:top;}
+  tr:nth-child(even) td{background:#f9fafb;}
+  td code{background:var(--cream);padding:1px 5px;border-radius:3px;font-size:.68rem;color:var(--morado);}
+
+  .nota{border-radius:8px;padding:12px 16px;font-size:.75rem;line-height:1.6;margin-bottom:16px;}
+  .nota.azul{background:rgba(22,54,92,.06);border-left:3px solid var(--azul);}
+  .nota.naranja{background:rgba(240,128,25,.07);border-left:3px solid var(--naranja);}
+  .nota strong{color:var(--azul);}
+
+  .print-btn{position:fixed;bottom:24px;right:24px;background:var(--naranja);color:white;border:none;border-radius:999px;padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(240,128,25,.4);}
+  .page-footer{padding:10px 28px;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:.7rem;color:var(--gris);}
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">🖨️ Guardar PDF</button>
+
+<div class="page">
+  <div class="page-header">
+    <img src="../logo-afcademia.png" alt="AFCademIA"/>
+    <div>
+      <div class="titulo">Make.com · Aviso automático al proveedor</div>
+      <div class="sub">Gestión de incidencias · Configuración de nodos</div>
+    </div>
+  </div>
+  <div class="body">
+    <h1>Flujo: Incidencia recibida → Aviso al proveedor</h1>
+    <p class="meta">
+      Cuando entra una incidencia del formulario, Make busca el proveedor asignado a esa comunidad y tipo de avería,
+      la IA redacta el email de aviso y se envía automáticamente al proveedor.
+    </p>
+    <div class="accent"></div>
+
+    <!-- DIAGRAMA -->
+    <div class="flujo">
+
+      <div class="nodo n-sheets">
+        <div class="badge b-trigger">Trigger · ya existente</div>
+        <div class="nodo-header">
+          <div class="ico">📊</div>
+          <div><div class="nom">Google Sheets</div><div class="tip">Watch Rows (formulario)</div></div>
+        </div>
+        <div class="nodo-body">
+          <div class="campo"><div class="campo-l">Hoja</div><div class="campo-v">Respuestas de formulario 1</div></div>
+          <div class="campo"><div class="campo-l">Datos disponibles</div><div class="campo-v verde">Propietario, comunidad, tipo…</div></div>
+        </div>
+      </div>
+
+      <div class="flecha"><div class="fl"></div></div>
+
+      <div class="nodo n-sheets">
+        <div class="badge b-busqueda">Nodo A · Búsqueda</div>
+        <div class="nodo-header">
+          <div class="ico">🔍</div>
+          <div><div class="nom">Google Sheets</div><div class="tip">Search Rows (proveedores)</div></div>
+        </div>
+        <div class="nodo-body">
+          <div class="campo"><div class="campo-l">Hoja proveedores</div><div class="campo-v warn">⚠️ Seleccionar hoja</div></div>
+          <div class="campo"><div class="campo-l">Filtro 1 — Comuidad</div><div class="campo-v var">{{1.Nombre de la comunidad}}</div></div>
+          <div class="campo"><div class="campo-l">Filtro 2 — Tipo incidencia</div><div class="campo-v var">{{1.Tipo incidencia}}</div></div>
+          <div class="campo"><div class="campo-l">Límite resultados</div><div class="campo-v">1</div></div>
+        </div>
+      </div>
+
+      <div class="flecha"><div class="fl"></div></div>
+
+      <div class="nodo n-openai">
+        <div class="badge b-ia">Nodo B · IA</div>
+        <div class="nodo-header">
+          <div class="ico">🤖</div>
+          <div><div class="nom">OpenAI</div><div class="tip">Create Completion</div></div>
+        </div>
+        <div class="nodo-body">
+          <div class="campo"><div class="campo-l">Model</div><div class="campo-v">gpt-4o-mini</div></div>
+          <div class="campo"><div class="campo-l">Temperature</div><div class="campo-v">0.3</div></div>
+          <div class="campo"><div class="campo-l">Max tokens</div><div class="campo-v">250</div></div>
+          <div class="campo"><div class="campo-l">Resultado</div><div class="campo-v verde">Email redactado listo</div></div>
+        </div>
+      </div>
+
+      <div class="flecha"><div class="fl"></div></div>
+
+      <div class="nodo n-gmail">
+        <div class="badge b-envio">Nodo C · Envío</div>
+        <div class="nodo-header">
+          <div class="ico">✉️</div>
+          <div><div class="nom">Gmail</div><div class="tip">Send an Email</div></div>
+        </div>
+        <div class="nodo-body">
+          <div class="campo"><div class="campo-l">Para (To)</div><div class="campo-v var">{{A.Email}}</div></div>
+          <div class="campo"><div class="campo-l">Asunto</div><div class="campo-v">Incidencia: {{1.Tipo incidencia}} — {{1.Nombre de la comunidad}}</div></div>
+          <div class="campo"><div class="campo-l">Cuerpo</div><div class="campo-v var">{{B.choices[].message.content}}</div></div>
+          <div class="campo"><div class="campo-l">Tipo</div><div class="campo-v">HTML</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PROMPTS -->
+    <h2>🤖 Configuración del Nodo B — OpenAI</h2>
+
+    <div class="prompt-box">
+      <div class="ptitulo sys">■ SYSTEM (rol e instrucciones)</div>
+      <pre>Eres el asistente de una administración de fincas en España.
+Redacta un email profesional y conciso en español dirigido
+al proveedor para comunicarle que debe atender una avería
+en una de nuestras comunidades.
+El remitente somos nosotros, la administración.
+Sin firma. Máximo 6 líneas.</pre>
+    </div>
+
+    <div class="prompt-box">
+      <div class="ptitulo usr">■ USER (datos de la incidencia — mapear visualmente en Make)</div>
+      <pre>Proveedor: <span class="var">{{A.Nombre proveedor}}</span>
+Comunidad: <span class="var">{{1.Nombre de la comunidad (C)}}</span>
+Dirección: <span class="var">{{1.Dirección de la vivienda (F)}}</span>
+Piso: <span class="var">{{1.Piso (E)}}</span>
+Propietario afectado: <span class="var">{{1.Nombre completo Propietario (B)}}</span>
+Tipo de avería: <span class="var">{{1.Tipo incidencia (G)}}</span>
+Fecha registro: <span class="var">{{1.Marca temporal (A)}}</span>
+
+<span class="com">// Si tienes teléfono del propietario en el formulario, añadir:
+// Teléfono propietario: {{1.Teléfono (X)}}</span></pre>
+    </div>
+
+    <!-- EJEMPLO OUTPUT -->
+    <h2>📄 Ejemplo de email generado</h2>
+    <div class="ejemplo">
+      Estimado equipo de <strong>Instalaciones García</strong>,<br/><br/>
+      Les comunicamos que el propietario <strong>Manel Méndez</strong>, residente en el piso <strong>1B</strong>
+      de C/ Angel Guimera de la comunidad <strong>Barcelona</strong>, ha reportado una avería de
+      <strong>Electricidad / luz</strong> con fecha 18/06/2026.<br/><br/>
+      Les rogamos que se pongan en contacto con el propietario a la mayor brevedad posible para
+      coordinar la visita y proceder a la reparación.<br/><br/>
+      Quedamos a su disposición para cualquier consulta.<br/>
+      <em style="color:var(--gris)">Atentamente, [firma de la administración]</em>
+    </div>
+
+    <!-- TABLA VARIABLES -->
+    <h2>📋 Variables por nodo</h2>
+    <table>
+      <thead>
+        <tr><th>Variable Make</th><th>Origen</th><th>Contenido</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>{{1.Nombre completo Propietario (B)}}</code></td><td>Sheets formulario</td><td>Nombre del propietario</td></tr>
+        <tr><td><code>{{1.Nombre de la comunidad (C)}}</code></td><td>Sheets formulario</td><td>Nombre comunidad</td></tr>
+        <tr><td><code>{{1.Tipo incidencia (G)}}</code></td><td>Sheets formulario</td><td>Tipo de avería</td></tr>
+        <tr><td><code>{{A.Nombre proveedor}}</code></td><td>Nodo A — Search Rows</td><td>Nombre del proveedor</td></tr>
+        <tr><td><code>{{A.Email}}</code></td><td>Nodo A — Search Rows</td><td>Email del proveedor (destinatario)</td></tr>
+        <tr><td><code>{{A.Teléfono}}</code></td><td>Nodo A — Search Rows</td><td>Teléfono del proveedor</td></tr>
+        <tr><td><code>{{B.choices[].message.content}}</code></td><td>Nodo B — OpenAI</td><td>Email redactado por la IA</td></tr>
+      </tbody>
+    </table>
+
+    <div class="nota azul">
+      <strong>Nota sobre los IDs reales:</strong> En Make los identificadores <code>{{A.}}</code> y <code>{{B.}}</code>
+      son el número de módulo real (ej. <code>{{3.}}</code>, <code>{{4.}}</code>). Al configurar visualmente,
+      Make los asigna automáticamente al arrastrar las variables desde el panel lateral.
+    </div>
+
+    <div class="nota naranja">
+      <strong>Tipo de incidencia en el formulario:</strong> Los 4 valores son
+      <em>Electricidad / luz · Fontaneria / Agua · Jadineria / Piscina · Ascensor / Zonas comunes</em>.
+      La columna "Tipo incidencia" del Sheets de proveedores debe usar exactamente los mismos textos
+      para que el filtro de búsqueda funcione.
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>Gestión de Incidencias · Aviso proveedor · Make.com</span>
+    <span>cursos@afcademia.com · 661 239 319</span>
+  </div>
+</div>
+
+</body>
+</html>
