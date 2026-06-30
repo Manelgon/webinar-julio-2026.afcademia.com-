@@ -114,9 +114,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     privacy_accepted_at: now,
                 }, { onConflict: 'email' });
 
-                if (error) console.error('Supabase error:', error.message);
+                if (error) {
+                    console.error('Supabase error:', error.message);
+                    btn.textContent = 'Error: ' + error.message;
+                    btn.disabled = false;
+                    return;
+                }
             } catch (err) {
                 console.error('Supabase error:', err);
+                btn.textContent = 'Error al enviar. Inténtalo de nuevo.';
+                btn.disabled = false;
+                return;
             }
 
             // 2. Redirigir a página de gracias con los materiales
