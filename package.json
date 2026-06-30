@@ -1,0 +1,8 @@
+{
+  "name": "landing-afc-webinar-julio-2026",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx serve . -p 3000 --no-clipboard",
+    "start": "npx serve . -p 3000"
+  }
+}

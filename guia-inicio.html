@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Guía de Inicio · Las 3 Herramientas · AFCademIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--azul:#16365C;--naranja:#F08019;--cream:#F5F8FC;--gris:#4A5A70;}
+*{box-sizing:border-box;margin:0;padding:0;}
+@media print{
+  body{background:white;padding:0;color:#16365C;}
+  .no-print{display:none;}
+  .tool-section{page-break-before:always;}
+  .tool-section:first-of-type{page-break-before:avoid;}
+  @page{margin:14mm 12mm;}
+}
+body{font-family:'Inter',sans-serif;background:#F5F8FC;color:#16365C;padding:32px 16px;}
+.page{max-width:780px;margin:0 auto;}
+
+/* HEADER */
+.header{background:#16365C;border-radius:16px 16px 0 0;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--naranja);}
+.header img{height:26px;}
+.header-right{text-align:right;font-size:.72rem;color:rgba(255,255,255,.6);}
+.header-right strong{color:white;display:block;font-size:.82rem;}
+
+/* HERO */
+.hero-block{background:white;padding:32px;text-align:center;border-bottom:1px solid #e2e8f0;}
+.hero-block h1{font-size:1.5rem;font-weight:900;margin-bottom:8px;letter-spacing:-.02em;color:#16365C;}
+.hero-block p{font-size:.85rem;color:#4A5A70;line-height:1.6;max-width:500px;margin:0 auto;}
+
+/* TOOL SECTIONS */
+.tool-section{background:white;margin-top:2px;}
+.tool-section:last-of-type{border-radius:0 0 16px 16px;}
+
+.tool-header{display:flex;align-items:center;gap:14px;padding:20px 28px;background:#F5F8FC;border-bottom:1px solid #e2e8f0;}
+.tool-num{background:var(--naranja);color:white;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;flex-shrink:0;}
+.tool-info h2{font-size:1rem;font-weight:800;color:#16365C;}
+.tool-info p{font-size:.72rem;color:#4A5A70;margin-top:2px;}
+.tool-time{margin-left:auto;font-size:.7rem;font-weight:700;color:#4A5A70;background:#F5F8FC;border:1px solid #e2e8f0;padding:4px 10px;border-radius:999px;white-space:nowrap;}
+
+.tool-body{padding:20px 28px;}
+
+.step-block{margin-bottom:20px;}
+.step-block:last-child{margin-bottom:0;}
+.step-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--naranja);margin-bottom:10px;}
+.steps{list-style:none;counter-reset:s;}
+.steps li{counter-increment:s;display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:.83rem;color:#4A5A70;line-height:1.5;}
+.steps li:last-child{border-bottom:none;}
+.steps li::before{content:counter(s);background:#16365C;color:white;min-width:22px;height:22px;border-radius:5px;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.steps li strong{color:#16365C;}
+.steps li a{color:#F08019;}
+
+.note{background:rgba(240,128,25,.06);border:1px solid rgba(240,128,25,.25);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:.78rem;color:#4A5A70;line-height:1.6;}
+.note strong{color:#F08019;}
+
+.divider{height:1px;background:#f1f5f9;margin:18px 0;}
+
+/* FOOTER */
+.footer{background:#16365C;border-radius:0 0 16px 16px;padding:14px 28px;display:flex;justify-content:space-between;}
+.footer p{font-size:.68rem;color:rgba(255,255,255,.4);}
+
+.print-btn{position:fixed;bottom:24px;right:24px;background:var(--naranja);color:white;border:none;border-radius:999px;padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(240,128,25,.4);}
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">🖨️ Guardar PDF</button>
+<div class="page">
+
+  <div class="header">
+    <img src="https://afcademia.com/wp-content/uploads/elementor/thumbs/Logo-oficial-web1-roi228ovmhvrlj6jft9zhc1gx83mr0szwn28g88atg.png" alt="AFCademIA"/>
+    <div class="header-right">
+      <strong>Guía de Inicio Paso a Paso</strong>
+      Las 3 Herramientas · Webinar AFCademIA 2026
+    </div>
+  </div>
+
+  <div class="hero-block">
+    <h1>Empieza esta semana, no «algún día»</h1>
+    <p>Sigue estos pasos en orden. Cada herramienta te lleva menos de 20 minutos configurar. En total: menos de una hora para transformar tu forma de trabajar.</p>
+  </div>
+
+  <!-- ══════════ TEXTEXPANDER ══════════ -->
+  <div class="tool-section">
+    <div class="tool-header">
+      <div class="tool-num">1</div>
+      <div class="tool-info">
+        <h2>TextExpander</h2>
+        <p>textexpander.com · Disponible en Mac, Windows e iOS</p>
+      </div>
+      <div class="tool-time">⏱ ~15 min</div>
+    </div>
+    <div class="tool-body">
+
+      <div class="step-block">
+        <div class="step-label">Instalación</div>
+        <ol class="steps">
+          <li>Ve a <a href="https://textexpander.com" target="_blank">textexpander.com</a> y crea una cuenta gratuita (30 días de prueba, luego 3,33€/mes).</li>
+          <li>Descarga la app para tu sistema operativo e instálala.</li>
+          <li>Al abrirla por primera vez, concédele permiso de <strong>accesibilidad</strong> — sin esto no puede expandir texto.</li>
+          <li>En Mac: <em>Ajustes del sistema → Privacidad → Accesibilidad → TextExpander ✓</em></li>
+          <li>En Windows: acepta el permiso cuando lo solicite el instalador.</li>
+        </ol>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="step-block">
+        <div class="step-label">Tu primer snippet en 5 minutos</div>
+        <ol class="steps">
+          <li>Abre TextExpander y haz clic en <strong>"New Snippet"</strong> (botón +).</li>
+          <li>En el campo <strong>"Content"</strong> escribe o pega el texto completo que quieres expandir (ej. tu firma profesional).</li>
+          <li>En el campo <strong>"Abbreviation"</strong> pon el atajo corto (ej. <strong>;firma</strong>). Usa siempre <strong>;</strong> al inicio para evitar activaciones accidentales.</li>
+          <li>Guarda con <strong>Cmd+S</strong> (Mac) o <strong>Ctrl+S</strong> (Windows).</li>
+          <li>Pruébalo: abre el bloc de notas, escribe <strong>;firma</strong> y pulsa espacio. ¡Debería expandirse!</li>
+        </ol>
+        <div class="note"><strong>Tip:</strong> Crea primero los 5 textos que más repites: firma, acuse de recibo, datos de tu despacho, saludo genérico y despedida. En 10 minutos tienes los más útiles.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ CLAUDE ══════════ -->
+  <div class="tool-section">
+    <div class="tool-header">
+      <div class="tool-num">2</div>
+      <div class="tool-info">
+        <h2>Claude</h2>
+        <p>claude.ai · Versión gratuita disponible · Sin instalación</p>
+      </div>
+      <div class="tool-time">⏱ ~10 min</div>
+    </div>
+    <div class="tool-body">
+
+      <div class="step-block">
+        <div class="step-label">Registro y primer uso</div>
+        <ol class="steps">
+          <li>Ve a <a href="https://claude.ai" target="_blank">claude.ai</a> y crea una cuenta con tu email (es gratuito).</li>
+          <li>Una vez dentro, verás el chat. Escribe directamente en el cuadro inferior.</li>
+          <li>Copia cualquier prompt de la guía de prompts, pega en el chat, sustituye los datos entre corchetes y pulsa Enter.</li>
+          <li>Si el resultado no te gusta, escribe <strong>"Inténtalo de nuevo, pero hazlo más [formal / corto / claro]"</strong>.</li>
+          <li>Cuando tengas el texto final, cópialo con <strong>Ctrl+C</strong> y pégalo donde lo necesites.</li>
+        </ol>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="step-block">
+        <div class="step-label">Prueba ahora mismo — acta desde notas</div>
+        <ol class="steps">
+          <li>Abre Claude y pega el <strong>Prompt nº 2</strong> de tu guía (Acta de junta desde notas).</li>
+          <li>Sustituye <em>[PEGA AQUÍ TUS APUNTES]</em> por cualquier texto desordenado de prueba.</li>
+          <li>Pulsa Enter y observa el resultado. Normalmente en 10-15 segundos tienes el acta.</li>
+          <li>Prueba con <strong>"Hazlo más formal"</strong> y luego <strong>"Acórtalo un 30%"</strong> para ver cómo responde.</li>
+        </ol>
+        <div class="note"><strong>Límite gratuito:</strong> Claude Free tiene un límite de mensajes diarios. Si lo alcanzas, espera unas horas o considera el plan Pro (18€/mes) si lo usas intensivamente.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ MAKE ══════════ -->
+  <div class="tool-section">
+    <div class="tool-header">
+      <div class="tool-num">3</div>
+      <div class="tool-info">
+        <h2>Make</h2>
+        <p>make.com · Plan gratuito con 1.000 operaciones/mes</p>
+      </div>
+      <div class="tool-time">⏱ ~25 min</div>
+    </div>
+    <div class="tool-body">
+
+      <div class="step-block">
+        <div class="step-label">Registro e importar el blueprint</div>
+        <ol class="steps">
+          <li>Ve a <a href="https://make.com" target="_blank">make.com</a> y crea una cuenta gratuita.</li>
+          <li>Una vez dentro, haz clic en <strong>"Scenarios"</strong> en el menú lateral.</li>
+          <li>Haz clic en el botón <strong>"Create a new scenario"</strong>.</li>
+          <li>En la esquina inferior izquierda verás tres puntos <strong>···</strong> → haz clic → <strong>"Import Blueprint"</strong>.</li>
+          <li>Sube el archivo <strong>make-blueprint.json</strong> que descargaste.</li>
+          <li>El escenario aparecerá con todos los módulos conectados.</li>
+        </ol>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="step-block">
+        <div class="step-label">Conectar tus cuentas de Google</div>
+        <ol class="steps">
+          <li>Haz clic en el módulo de <strong>Google Sheets</strong> (icono verde). Verás un aviso de "conexión requerida".</li>
+          <li>Haz clic en <strong>"Add"</strong> junto al campo de conexión y sigue el flujo de OAuth de Google.</li>
+          <li>Acepta <strong>todos los permisos</strong>, incluyendo lectura y escritura en Sheets.</li>
+          <li>Repite el mismo proceso para los módulos de <strong>Gmail</strong>.</li>
+          <li>Selecciona tu hoja de Google Sheets en el campo <strong>"Spreadsheet ID"</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="step-block">
+        <div class="step-label">Conectar OpenAI (para el email automático)</div>
+        <ol class="steps">
+          <li>Ve a <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a> y crea una API Key.</li>
+          <li>En Make, haz clic en el módulo de <strong>OpenAI</strong> → campo de conexión → <strong>"Add"</strong>.</li>
+          <li>Pega tu API Key en el campo correspondiente.</li>
+          <li>El plan gratuito de OpenAI incluye créditos iniciales. Un email generado cuesta menos de 0,001€.</li>
+        </ol>
+        <div class="note"><strong>Para probar:</strong> Haz clic en <strong>"Run once"</strong> en la esquina inferior izquierda. Make ejecutará el escenario una vez con datos reales para que veas el resultado antes de activarlo.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 AFCademIA · Recurso exclusivo para asistentes al webinar</p>
+    <p>cursos@afcademia.com · 661 239 319</p>
+  </div>
+
+</div>
+</body>
+</html>

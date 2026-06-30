@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cheatsheet · Las 3 Herramientas de IA · AFCademIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--azul:#16365C;--naranja:#F08019;--cream:#F5F8FC;--gris:#4A5A70;}
+*{box-sizing:border-box;margin:0;padding:0;}
+@media print{
+  body{background:white;padding:0;}
+  .page{box-shadow:none;border-radius:0;}
+  .no-print{display:none;}
+  @page{margin:10mm;size:A4 landscape;}
+}
+body{font-family:'Inter',sans-serif;background:#F5F8FC;padding:24px 16px;color:#16365C;}
+.page{max-width:1050px;margin:0 auto;background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(22,54,92,.1);}
+
+/* TOP */
+.top{display:flex;align-items:center;justify-content:space-between;background:#16365C;padding:16px 28px;border-bottom:3px solid var(--naranja);}
+.top img{height:26px;}
+.top-center{text-align:center;}
+.top-center h1{font-size:.95rem;font-weight:800;color:white;}
+.top-center p{font-size:.68rem;color:rgba(255,255,255,.6);}
+.top-right{font-size:.68rem;color:rgba(255,255,255,.5);text-align:right;}
+
+/* GRID 3 COLS */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.col{padding:20px 22px;border-right:1px solid #e2e8f0;}
+.col:last-child{border-right:none;}
+
+.col-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:2px solid #e2e8f0;}
+.col-num{background:var(--naranja);color:white;font-size:.72rem;font-weight:800;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.col-name{font-size:.95rem;font-weight:800;color:#16365C;}
+.col-sub{font-size:.68rem;color:#4A5A70;margin-top:1px;}
+
+.col-label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--naranja);margin-bottom:6px;margin-top:14px;}
+.col-label:first-of-type{margin-top:0;}
+
+.use-list{list-style:none;}
+.use-list li{font-size:.75rem;color:#4A5A70;line-height:1.5;padding:4px 0;border-bottom:1px solid #f1f5f9;display:flex;gap:7px;}
+.use-list li:last-child{border-bottom:none;}
+.use-list li::before{content:"→";color:var(--naranja);flex-shrink:0;font-weight:700;}
+
+.step-list{list-style:none;counter-reset:steps;}
+.step-list li{font-size:.74rem;color:#4A5A70;line-height:1.5;padding:5px 0 5px 26px;border-bottom:1px solid #f1f5f9;position:relative;counter-increment:steps;}
+.step-list li::before{content:counter(steps);position:absolute;left:0;top:5px;background:#e2e8f0;color:#16365C;width:18px;height:18px;border-radius:4px;font-size:.64rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.step-list li:last-child{border-bottom:none;}
+
+.shortcut-grid{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center;}
+.sc-key{background:#F5F8FC;border:1px solid #e2e8f0;border-radius:4px;padding:3px 7px;font-size:.65rem;font-family:'Consolas',monospace;color:#16365C;white-space:nowrap;}
+.sc-desc{font-size:.72rem;color:#4A5A70;}
+
+.tip-box{background:rgba(240,128,25,.06);border:1px solid rgba(240,128,25,.25);border-radius:6px;padding:8px 10px;margin-top:10px;}
+.tip-box p{font-size:.72rem;color:#4A5A70;line-height:1.5;}
+.tip-box strong{color:#F08019;}
+
+/* BOTTOM */
+.bottom{background:#16365C;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;}
+.bottom p{font-size:.65rem;color:rgba(255,255,255,.4);}
+.bottom a{color:rgba(255,255,255,.5);}
+
+.print-btn{position:fixed;bottom:24px;right:24px;background:var(--naranja);color:white;border:none;border-radius:999px;padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(240,128,25,.4);}
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">🖨️ Guardar PDF</button>
+<div class="page">
+
+  <div class="top">
+    <img src="https://afcademia.com/wp-content/uploads/elementor/thumbs/Logo-oficial-web1-roi228ovmhvrlj6jft9zhc1gx83mr0szwn28g88atg.png" alt="AFCademIA"/>
+    <div class="top-center">
+      <h1>Las 3 Herramientas de IA para Administradores de Fincas</h1>
+      <p>Cheatsheet · Webinar AFCademIA · 1 de julio 2026</p>
+    </div>
+    <div class="top-right">cursos@afcademia.com<br/>661 239 319</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- COL 1: TEXTEXPANDER -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-num">1</div>
+        <div>
+          <div class="col-name">TextExpander</div>
+          <div class="col-sub">textexpander.com · desde 3,33€/mes</div>
+        </div>
+      </div>
+
+      <div class="col-label">Para qué sirve</div>
+      <ul class="use-list">
+        <li>Escribir circulares completas con 2-3 letras</li>
+        <li>Respuestas tipo a emails frecuentes</li>
+        <li>Firmas, saludos y despedidas profesionales</li>
+        <li>Datos de la comunidad sin tener que buscarlos</li>
+        <li>Fechas y referencias automáticas</li>
+      </ul>
+
+      <div class="col-label">Cómo funciona</div>
+      <ol class="step-list">
+        <li>Instala la app en Mac / Windows</li>
+        <li>Crea un "snippet" con el texto completo</li>
+        <li>Asigna un atajo corto (ej. <span style="color:#fbbf24;">;conv</span>)</li>
+        <li>Escribe el atajo en cualquier app</li>
+        <li>El texto se expande automáticamente</li>
+      </ol>
+
+      <div class="col-label">Atajos de ejemplo</div>
+      <div class="shortcut-grid">
+        <span class="sc-key">;conv</span><span class="sc-desc">Convocatoria de junta</span>
+        <span class="sc-key">;ack</span><span class="sc-desc">Acuse de recibo genérico</span>
+        <span class="sc-key">;firma</span><span class="sc-desc">Firma profesional completa</span>
+        <span class="sc-key">;inci</span><span class="sc-desc">Formulario de incidencia</span>
+        <span class="sc-key">;datos</span><span class="sc-desc">Datos de la comunidad</span>
+      </div>
+
+      <div class="tip-box">
+        <p><strong>Truco:</strong> Usa <span style="color:#fbbf24;">{cursor}</span> en el snippet para que el cursor salte al punto donde debes rellenar el dato variable.</p>
+      </div>
+    </div>
+
+    <!-- COL 2: CLAUDE -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-num">2</div>
+        <div>
+          <div class="col-name">Claude</div>
+          <div class="col-sub">claude.ai · versión gratuita disponible</div>
+        </div>
+      </div>
+
+      <div class="col-label">Para qué sirve</div>
+      <ul class="use-list">
+        <li>Redactar actas desde notas desordenadas</li>
+        <li>Contestar reclamaciones con tono profesional</li>
+        <li>Generar burofax y requerimientos formales</li>
+        <li>Resumir documentos largos</li>
+        <li>Revisar ortografía y estilo de textos propios</li>
+      </ul>
+
+      <div class="col-label">Anatomía de un buen prompt</div>
+      <ol class="step-list">
+        <li><strong style="color:white;">Rol:</strong> "Eres un administrador de fincas en España"</li>
+        <li><strong style="color:white;">Tarea:</strong> qué quieres que haga exactamente</li>
+        <li><strong style="color:white;">Contexto:</strong> datos del caso (comunidad, propietario...)</li>
+        <li><strong style="color:white;">Tono:</strong> formal / cercano / jurídico</li>
+        <li><strong style="color:white;">Límite:</strong> "máximo 150 palabras" o "en 5 puntos"</li>
+      </ol>
+
+      <div class="col-label">Comandos rápidos</div>
+      <ul class="use-list">
+        <li>«Hazlo más formal» → sube el tono</li>
+        <li>«Acórtalo a la mitad» → versión resumida</li>
+        <li>«Versión para WhatsApp» → sin formalidades</li>
+        <li>«Revisa errores y mejora el estilo» → corrector</li>
+        <li>«Añade un párrafo sobre [tema]» → amplía</li>
+      </ul>
+
+      <div class="tip-box">
+        <p><strong>Truco:</strong> Si el resultado no te convence, escribe "Inténtalo de nuevo, esta vez [indicación concreta]". Claude aprende de tu feedback en la misma conversación.</p>
+      </div>
+    </div>
+
+    <!-- COL 3: MAKE -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-num">3</div>
+        <div>
+          <div class="col-name">Make</div>
+          <div class="col-sub">make.com · plan gratuito disponible</div>
+        </div>
+      </div>
+
+      <div class="col-label">Para qué sirve</div>
+      <ul class="use-list">
+        <li>Automatizar gestión de incidencias de inicio a fin</li>
+        <li>Registrar solicitudes en Google Sheets solo</li>
+        <li>Enviar emails automáticos a propietarios y proveedores</li>
+        <li>Notificarte cuando llega algo urgente</li>
+        <li>Conectar formularios, email, IA y hojas de cálculo</li>
+      </ul>
+
+      <div class="col-label">Flujo del webinar (demo)</div>
+      <ol class="step-list">
+        <li>Vecino rellena formulario de incidencia</li>
+        <li>Make registra en Google Sheets automáticamente</li>
+        <li>Busca el proveedor asignado según tipo</li>
+        <li>OpenAI redacta el email al proveedor</li>
+        <li>Se envía email al propietario, proveedor y admin</li>
+        <li>Se marca como "enviado" en la hoja</li>
+      </ol>
+
+      <div class="col-label">Conceptos clave</div>
+      <ul class="use-list">
+        <li><strong style="color:white;">Módulo:</strong> cada app conectada (Gmail, Sheets, OpenAI…)</li>
+        <li><strong style="color:white;">Trigger:</strong> qué inicia el flujo</li>
+        <li><strong style="color:white;">Filtro:</strong> condición para que siga o pare</li>
+        <li><strong style="color:white;">Variables:</strong> datos que pasan de un módulo al siguiente</li>
+      </ul>
+
+      <div class="tip-box">
+        <p><strong>Truco:</strong> Empieza con el blueprint que hemos compartido. Importa el JSON en Make → Escenarios → Importar y conecta tus cuentas de Google.</p>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <div class="bottom">
+    <p>© 2026 AFCademIA · Recurso exclusivo para asistentes al webinar · No redistribuir</p>
+    <p>cursos@afcademia.com · <a href="#">afcademia.com</a></p>
+  </div>
+
+</div>
+</body>
+</html>
