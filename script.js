@@ -2,9 +2,8 @@
 // AFCademIA — Landing Webinar IA Scripts
 // =========================================
 
-const SUPABASE_URL    = '{{SUPABASE_URL}}';
-const SUPABASE_KEY    = '{{SUPABASE_ANON_KEY}}';
-const GOOGLE_FORM_URL = 'https://forms.gle/Vhd3QbMJYtWTCBhA6';
+const SUPABASE_URL = '{{SUPABASE_URL}}';
+const SUPABASE_KEY = '{{SUPABASE_ANON_KEY}}';
 
 const SOURCE = 'webinar-julio-2026-administrador-fincas';
 
@@ -120,8 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Supabase error:', err);
             }
 
-            // 2. Abrir Google Form en nueva pestaña + redirigir a gracias
-            window.open(GOOGLE_FORM_URL, '_blank', 'noopener');
+            // 2. Redirigir a página de gracias con los materiales
             window.location.href = 'gracias.html';
         });
     });
