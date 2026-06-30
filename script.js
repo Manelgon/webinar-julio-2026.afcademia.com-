@@ -88,19 +88,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Form submit ---
+    const COOLDOWN_MS  = 30000;
+    const COOLDOWN_KEY = 'lead_form_last_submit';
+
+    function applyCooldown(btn) {
+        const last = parseInt(localStorage.getItem(COOLDOWN_KEY) || '0');
+        const remaining = COOLDOWN_MS - (Date.now() - last);
+        if (remaining <= 0) return;
+
+        btn.disabled = true;
+        const interval = setInterval(() => {
+            const left = Math.ceil((COOLDOWN_MS - (Date.now() - parseInt(localStorage.getItem(COOLDOWN_KEY)))) / 1000);
+            if (left <= 0) {
+                clearInterval(interval);
+                btn.disabled = false;
+                btn.textContent = 'Enviar';
+            } else {
+                btn.textContent = `Espera ${left}s para reintentar`;
+            }
+        }, 500);
+    }
+
     document.querySelectorAll('.lead-form').forEach(form => {
+        const btn = form.querySelector('[type="submit"]');
+
+        // Aplicar cooldown si ya enviaron antes
+        applyCooldown(btn);
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const btn        = form.querySelector('[type="submit"]');
             const nombre     = form.querySelector('[name="nombre"]').value.trim();
             const email      = form.querySelector('[name="email"]').value.trim();
             const privacidad = form.querySelector('[name="privacidad"]');
 
             if (!nombre || !email || (privacidad && !privacidad.checked)) return;
 
+            // Registrar timestamp y bloquear
+            localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
+            applyCooldown(btn);
             btn.textContent = 'Enviando...';
-            btn.disabled    = true;
 
             const now = new Date().toISOString();
 
