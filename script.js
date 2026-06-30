@@ -116,19 +116,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (error) {
                     console.error('Supabase error:', error.message);
-                    btn.textContent = 'Error: ' + error.message;
+                    showFormMessage(form, 'error', '❌ ' + error.message);
+                    btn.textContent = 'Enviar';
                     btn.disabled = false;
                     return;
                 }
             } catch (err) {
                 console.error('Supabase error:', err);
-                btn.textContent = 'Error al enviar. Inténtalo de nuevo.';
+                showFormMessage(form, 'error', '❌ Error al enviar. Inténtalo de nuevo.');
+                btn.textContent = 'Enviar';
                 btn.disabled = false;
                 return;
             }
 
-            // 2. Redirigir a página de gracias con los materiales
-            window.location.href = 'gracias.html';
+            // 2. Mostrar éxito y redirigir
+            showFormMessage(form, 'success', '✅ ¡Registrado! Redirigiendo...');
+            setTimeout(() => { window.location.href = 'gracias.html'; }, 1500);
         });
     });
+
+    function showFormMessage(form, type, text) {
+        let msg = form.querySelector('.form-message');
+        if (!msg) {
+            msg = document.createElement('p');
+            msg.className = 'form-message';
+            msg.style.cssText = 'margin-top:10px;padding:10px 14px;border-radius:6px;font-size:.88rem;text-align:center;font-weight:500;';
+            form.appendChild(msg);
+        }
+        msg.textContent = text;
+        msg.style.background = type === 'success' ? '#d1fae5' : '#fee2e2';
+        msg.style.color      = type === 'success' ? '#065f46' : '#991b1b';
+    }
 });
