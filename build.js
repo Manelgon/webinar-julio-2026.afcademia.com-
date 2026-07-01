@@ -47,7 +47,7 @@ staticFiles.forEach(file => {
 });
 
 // Copiar archivos de lead-magnet
-const leadMagnetFiles = ['guia-rapida.html', 'cheatsheet.pdf', 'prompts-claude.pdf', 'guia-inicio.pdf'];
+const leadMagnetFiles = ['guia-rapida.html', 'cheatsheet.pdf', 'prompts-claude.pdf', 'guia-inicio.pdf', 'guia-rapida.pdf'];
 leadMagnetFiles.forEach(file => {
     const src = path.join(__dirname, 'lead-magnet', file);
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(distDir, file));
