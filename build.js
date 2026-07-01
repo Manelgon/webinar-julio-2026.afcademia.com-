@@ -57,6 +57,9 @@ leadMagnetFiles.forEach(file => {
 const slidesSrc = path.join(__dirname, 'lead-magnet', 'material-ponente', '02-presentacion', 'slides.html');
 if (fs.existsSync(slidesSrc)) fs.copyFileSync(slidesSrc, path.join(distDir, 'slides-ponente.html'));
 
+const slidesPdfSrc = path.join(__dirname, 'lead-magnet', 'material-ponente', '02-presentacion', 'slides.pdf');
+if (fs.existsSync(slidesPdfSrc)) fs.copyFileSync(slidesPdfSrc, path.join(distDir, 'slides-ponente.pdf'));
+
 // Copiar blueprint con nombre limpio para URL
 const blueprintSrc = path.join(__dirname, 'Webinar junlio 2026.blueprint.json');
 if (fs.existsSync(blueprintSrc)) {
