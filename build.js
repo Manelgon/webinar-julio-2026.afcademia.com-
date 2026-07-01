@@ -67,7 +67,7 @@ if (fs.existsSync(blueprintSrc)) {
 }
 
 // Copiar imágenes si existen
-['logo-afcademia.png', 'icono-afcademia.webp', 'banner.jpeg', 'afcademia_header_email.png'].forEach(file => {
+['logo-afcademia.png', 'afcademia_logo_nuevo.png', 'icono-afcademia.webp', 'banner.jpeg', 'afcademia_header_email.png'].forEach(file => {
     const src = path.join(__dirname, file);
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(distDir, file));
 });
